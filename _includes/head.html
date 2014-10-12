@@ -7,9 +7,10 @@
         {% if page.title == "Home" %}
             {{ site.title }} &middot; {{ site.tagline }}
         {% else %}
-            {{ page.title }} &middot; {{ page.tagline }}
+            {{ page.title }} &middot; {{ site.title }}
         {% endif %}
     </title>
 
-    <link rel=stylesheet href="{{ site.basurl }}public/css/main.css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel=stylesheet href="{{ site.baseurl }}public/css/main.css">
 </head>

@@ -2,13 +2,13 @@
 permalink:      pretty
 relative_permalinks: true
 
-title:          Neikos's Treehouse
-tagline:        My fleeting thoughts
+title:          Neikos's Blog
+tagline:        Talking about my work and leisure
 description:    Ideas and thoughts I have from tie to time
 url:            http://neikos.me
 paginate:       1
 baseurl:        /
 author:
-    name:       Marcel Mueller
+    name:       Marcel M&uuml;ller
     email:      marcel-muller@hotmail.com
 

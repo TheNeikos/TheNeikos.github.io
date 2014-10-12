@@ -1,0 +1,46 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: #1A341A;
+}
+
+.container.content {
+    width: 70%;
+    min-width: 20em;
+    margin: 0 auto;
+}
+
+.masthead-title img {
+    vertical-align: middle;
+    height: 3em;
+    border-radius: 0.5em;
+}
+
+article h1 {
+    margin-top: 1em;
+    margin-bottom: 0.3em;
+}
+
+article p {
+    padding-left: 1em;
+}
+
+aside h2 {
+    font-size: 1em;
+}
+
+footer {
+    text-align: center;
+}
