@@ -1,0 +1,14 @@
+
+permalink:      pretty
+relative_permalinks: true
+
+title:          Neikos's Treehouse
+tagline:        My fleeting thoughts
+description:    Ideas and thoughts I have from tie to time
+url:            http://neikos.me
+paginate:       1
+baseurl:        /
+author:
+    name:       Marcel Mueller
+    email:      marcel-muller@hotmail.com
+

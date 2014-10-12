@@ -1,0 +1,15 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name=viewport content="width=device-width,
+            intial-scale=1.0, maximum-scale=1">
+
+    <title>
+        {% if page.title == "Home" %}
+            {{ site.title }} &middot; {{ site.tagline }}
+        {% else %}
+            {{ page.title }} &middot; {{ page.tagline }}
+        {% endif %}
+    </title>
+
+    <link rel=stylesheet href="{{ site.basurl }}public/css/main.css">
+</head>
