@@ -12,7 +12,7 @@ a {
     text-decoration: none;
 }
 
-a:visited {
+a, a:visited {
     color: #1A341A;
 }
 
