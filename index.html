@@ -14,7 +14,12 @@ layout: default
 
     <time datetime="{{ post.date | date_to_xmlschema }}" class="post-date">{{ post.date | date_to_string }}</time>
 
-    {{ post.content }}
+    {{ post.excerpt | remove: '</p>'}}
+    <br>
+    <a href="{{ post.url }}">
+        Read More...
+    </a>
+    </p>
   </article>
   {% endfor %}
 </div>
