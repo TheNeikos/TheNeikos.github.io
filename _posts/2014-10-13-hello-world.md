@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Hello World
+date: 2014-10-13 00:30:00
 ---
 
 Well, I have recently thought, why not finally use this domain of mine to go and

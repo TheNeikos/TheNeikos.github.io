@@ -6,9 +6,11 @@ title:          Neikos's Blog
 tagline:        Talking about my work and leisure
 description:    Ideas and thoughts I have from tie to time
 url:            http://neikos.me
-paginate:       1
+paginate:       10
 baseurl:        /
 author:
     name:       Marcel M&uuml;ller
     email:      marcel-muller@hotmail.com
 
+gems:
+    - jekyll-sitemap
