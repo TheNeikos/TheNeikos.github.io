@@ -23,7 +23,12 @@
 
       <footer class="footer">
         <small>
-            &copy; {{ site.author.name }}
+            &copy; 
+            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                <span itemprop="name">
+                  {{ site.author.name }}
+                </span>
+            </span>
             <time datetime="{{ site.time | date_to_xmlschema }}">
                 {{ site.time | date: '%Y' }}
             </time>.
