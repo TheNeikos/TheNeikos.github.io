@@ -3,7 +3,7 @@ layout: default
 ---
 
 <article class="post">
-  <h1 class="post-title">{{ page.title }}</h1>
+  <h1 itemprop="name" class="post-title">{{ page.title }}</h1>
   <div class="times">
       <time datetime="{{ page.date | date_to_xmlschema }}" class="page-date">{{ page.date | date_to_string }}</time>
       {% assign count = page.content | number_of_words %}
