@@ -36,6 +36,14 @@ article p {
     padding-left: 1em;
 }
 
+article .times {
+    padding-left: 1em;
+}
+
+#read_time {
+    color: #888;
+}
+
 aside h2 {
     font-size: 1em;
 }

@@ -4,13 +4,16 @@ layout: default
 
 <article class="post">
   <h1 class="post-title">{{ page.title }}</h1>
-  <time datetime="{{ page.date | date_to_xmlschema }}" class="page-date">{{ page.date | date_to_string }}</time>
-  {% assign count = page.content | number_of_words %}
-  {% if count >= 250 %}
-      <time title="{{ count }} words">
-          {{ page.content | number_of_words | append: '.0' | divided_by:180 | append: 'min' }}
-      </time>
-  {% endif %}
+  <div class="times">
+      <time datetime="{{ page.date | date_to_xmlschema }}" class="page-date">{{ page.date | date_to_string }}</time>
+      {% assign count = page.content | number_of_words %}
+      {% if count >= 250 %}
+          &mdash;
+          <time title="{{ count }} words" id="read_time">
+              {{ page.content | number_of_words | append: '.0' | divided_by:180 }}
+          </time>
+      {% endif %}
+  </div>
   {{ content }}
 </article>
 
@@ -29,3 +32,8 @@ layout: default
     {% endfor %}
   </ul>
 </aside>
+
+<script>
+    var el = document.getElementById("read_time");
+    el.innerHTML = Math.round(el.innerHTML) + " min";
+</script>
