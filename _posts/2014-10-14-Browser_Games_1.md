@@ -4,7 +4,7 @@ date: 2014-10-14 17:27:27
 title: Browser Games #1
 ---
 
-As announced in my [Hello World Post]({% post_url 2014-10-13-hello-world.md %})
+As announced in my [Hello World Post]({% post_url 2014-10-13-hello-world %})
 here is my idea for a game that I plan to develop. I don't mind giving it out
 into the world as it is quite complex and might not ever see the light of the
 day. I find it fun to think and plan complex projects, executing them is even
