@@ -51,3 +51,8 @@ aside h2 {
 footer {
     text-align: center;
 }
+
+code {
+    margin-top: 1em;
+    white-space: pre
+}
