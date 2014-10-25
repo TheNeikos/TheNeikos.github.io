@@ -1,0 +1,65 @@
+==================================================================
+https://keybase.io/neikos
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://neikos.me
+  * I am neikos (https://keybase.io/neikos) on keybase.
+  * I have a public key with fingerprint 8C76 EE6A EFA9 3CC1 969C  746A 7397 467A FF74 05AF
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "8c76ee6aefa93cc1969c746a7397467aff7405af",
+            "host": "keybase.io",
+            "key_id": "7397467aff7405af",
+            "uid": "b45557b60f94137a78451ce46682d000",
+            "username": "neikos"
+        },
+        "service": {
+            "hostname": "neikos.me",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1414206223,
+    "expire_in": 157680000,
+    "prev": "d62f343ca44440b0b06bebd6d17830b975e023b8e8c05919cc4796433f9e9a76",
+    "seqno": 2,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v1.1.3
+Comment: https://keybase.io/crypto
+
+yMHfAnicbVFtSBRRFB21wpa00IoSK3uaCG4yszPzZmYJISSRPkRJDEHa5uONjlsz
+u7OzpshCGX0YCSHaD7OsaGNjqTAhKkI3kzQUKWSxFS3BfggFRUIkhPZG6kfQez/u
+e+eec+693OG0FMKR9GJu38RD6VFV0ljsS5CoOpS5sQVIhtIM3C3Ai1aDqul1yPSZ
+mm4BN+BlDiIERaSKAi3LlAAFmWOgyNECDpyoqhxDsqIKnKDeCNgKbCOJAVSkGRjD
+H4+mYPQ//OBqQmJYluUkSKoCQ9GcyPEMS8mIgZB3KSRJ2sQAMnXxFMJsHWleIwBC
+ToCxRk1Gdsd24X/yRfjtBD7TsAzZOInhesvyuW2V1eyzaaeR5Plj4JE0XcEjY0Ej
+MgOaoQM3hZmypdmOFEMxLhK6XLQToCafZiKPZjNYDvK4O9IugxqxpQJdKs3Qssjg
+Q0r4QglJClQojqdJSeBYRLpoiUe8TLICJcgywwmQoWlVQILIQWCP5NcN4HbhNsU6
+bBnQ6nTRCpoIhIZitWuIJAexbm2yvTTCsX7T31UOj6QSF2+83TbEbvb3dJjT5+dm
+cu60dfRGstsjZOnW2adP7g9bnWMpoV56R0PhiaM3zwbzMl4R9wq6ujOW48K1nP4t
+nTB96dhXq+/XyG1H+AgTT62eygXj37PrR6+8PHhgqmAP5UvknXlWW7P/QkkY5qZn
+jd7tz256/iDMVvjGFLZ6/nFNOX3858BMX3m0OP66rDXTSZcK3pKeZdnDnbszECvL
++lZxq7hl4eM8vXsgQi8mJqY3dC8VhKrCavBDe+WuS+9boyAtev1HIr4y2ZO8sPdz
+ZWHNnD8/v2LqHb9zMUT0D8YOb2dz38wG8xraVtxXxycHuz5FvYnL5RH/zEjvb2SB
+ET4=
+=P+Y+
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/neikos
+
+==================================================================
