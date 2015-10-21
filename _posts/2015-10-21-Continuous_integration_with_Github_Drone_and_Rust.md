@@ -81,7 +81,7 @@ rather easy. Go to: https://github.com/settings/developers and click on
 
 Now fill out the fields:
 
-![https://i.imgur.com/bDpQQM9.png]
+![](https://i.imgur.com/bDpQQM9.png)
 
 There you will find two important fields:
 
@@ -127,7 +127,7 @@ We then create the first commit inside the new lib:
 Now let's create the repo. Let's go to https://github.com/new and create the
 repo.
 
-![https://i.imgur.com/owN2yXK.png]
+![](https://i.imgur.com/owN2yXK.png)
 
 Once that is done we will tell our local repository that there is an upstream
 repository. (Basically the 'push an existing repository')
@@ -245,7 +245,7 @@ The first time this runs might take a bit longer as the image will have to be
 downloaded first, subsequent builds should be faster. On my virtual machine it
 takes about 1-2 minutes.
 
-![https://i.imgur.com/cET7COE.png]
+!()(https://i.imgur.com/cET7COE.png)
 
 At the end it should tell you that it passed, you can then go back to you Github
 and start using it! Or secure it a bit more against accidental merges.
