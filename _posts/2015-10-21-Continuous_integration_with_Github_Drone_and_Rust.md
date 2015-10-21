@@ -245,7 +245,7 @@ The first time this runs might take a bit longer as the image will have to be
 downloaded first, subsequent builds should be faster. On my virtual machine it
 takes about 1-2 minutes.
 
-!()(https://i.imgur.com/cET7COE.png)
+![](https://i.imgur.com/cET7COE.png)
 
 At the end it should tell you that it passed, you can then go back to you Github
 and start using it! Or secure it a bit more against accidental merges.
@@ -257,7 +257,7 @@ to the branches tab and protect the `master` branch.
 
 Then you can re-affirm that you want to protect the branch and require status
 checks before merging. I like to include administrators because they can
-write that is just as bad :) as the average person.
+write code that is just as bad :) as the average person.
 
 Don't forget to check Drone at the bottom to make it **required**.
 
