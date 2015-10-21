@@ -4,9 +4,6 @@ date: 2015-10-21 11:25:33
 title: Continuous Integration with Github, Drone and Rust
 ---
 
-Continuous Integration with Github, Drone and Rust
-==================================================
-
 The combination of Github and Drone (or any other CI) is quite powerful when it
 comes to assuring that your pull requests are not breaking any existing tests.
 
