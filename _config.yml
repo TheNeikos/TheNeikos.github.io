@@ -4,7 +4,7 @@ relative_permalinks: true
 
 title:          Neikos' Blog
 tagline:        Talking about my work and leisure
-description:    Ideas and thoughts I have from tie to time
+description:    Ideas and thoughts I have from time to time
 url:            http://neikos.me
 paginate:       10
 baseurl:        /
