@@ -115,8 +115,8 @@ let's create a new cargo lib.
 We then create the first commit inside the new lib:
 
     cd awesome_lib
-    neikos@celestias-palace ~/p/r/awesome_lib (master)> git add .
-    neikos@celestias-palace ~/p/r/awesome_lib (master)> git commit -m "Initial Commit"
+    ~/p/r/awesome_lib (master)> git add .
+    ~/p/r/awesome_lib (master)> git commit -m "Initial Commit"
     [master (root-commit) a0b044a] Initial Commit
      3 files changed, 9 insertions(+)
      create mode 100644 .gitignore
@@ -175,13 +175,13 @@ cache:
 
 Then we create a new branch and add our changes to that and push them!
 
-    neikos@celestias-palace ~/p/r/awesome_lib (master)> git checkout -b add-drone
-    neikos@celestias-palace ~/p/r/awesome_lib (add-drone)> git add .drone.yml
-    neikos@celestias-palace ~/p/r/awesome_lib (add-drone)> git commit -m "Add .drone.yml"
+    ~/p/r/awesome_lib (master)> git checkout -b add-drone
+    ~/p/r/awesome_lib (add-drone)> git add .drone.yml
+    ~/p/r/awesome_lib (add-drone)> git commit -m "Add .drone.yml"
     [add-drone b894e05] Add .drone.yml
      1 file changed, 9 insertions(+)
      create mode 100644 .drone.yml
-    neikos@celestias-palace ~/p/r/awesome_lib (add-drone)> git push origin add-drone
+    ~/p/r/awesome_lib (add-drone)> git push origin add-drone
     Counting objects: 3, done.
     Delta compression using up to 8 threads.
     Compressing objects: 100% (3/3), done.
@@ -209,7 +209,7 @@ RUN apt-get install curl file git build-essential -y && curl -sSf https://static
 
 Then we build it!
 
-    neikos@celestias-palace ~/t/rust_image> docker build .
+    ~/t/rust_image> docker build .
 
 It should finish with:
 
@@ -222,11 +222,11 @@ It should finish with:
 In that last line is an id, we will need that in the next step, copy it and
 put it in the next command:
 
-    neikos@celestias-palace ~/t/rust_image> docker tag <THE_ID> <DOCKER_USERNAME>/rust:1.3
+    ~/t/rust_image> docker tag <THE_ID> <DOCKER_USERNAME>/rust:1.3
 
 Then we upload it:
 
-    neikos@celestias-palace ~/t/rust_image> docker push neikos/rust:1.3
+    ~/t/rust_image> docker push neikos/rust:1.3
     The push refers to a repository [docker.io/neikos/rust] (len: 1)
     bc9ad00de680: Image successfully pushed
     76be1ef20317: Image already exists

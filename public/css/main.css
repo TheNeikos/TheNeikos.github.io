@@ -55,5 +55,6 @@ footer {
 
 code {
     margin-top: 1em;
-    white-space: pre
+    white-space: pre;
+    max-width: 700px;
 }
