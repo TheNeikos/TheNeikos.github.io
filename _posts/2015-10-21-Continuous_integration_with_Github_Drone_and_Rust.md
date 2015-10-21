@@ -161,7 +161,7 @@ version should yours differ (it probably will in the future)
 If you don't have a docker account yet you can create one
 [here](https://docs.docker.com/docker-hub/accounts/)
 
-```yml
+```yaml
 image: <your docker name>/rust:1.3
 env:
     - CARGO_TARGET_DIR=/var/cache/drone/cargo
