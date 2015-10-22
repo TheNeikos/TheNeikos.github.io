@@ -57,5 +57,8 @@ code {
     margin-top: 1em;
     white-space: pre;
     max-width: 700px;
+}
+
+.highlight pre {
     overflow: auto;
 }
