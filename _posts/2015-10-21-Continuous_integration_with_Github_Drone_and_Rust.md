@@ -60,7 +60,7 @@ step.
 ### Connecting Github to Drone
 
 We now have to create a new Developer Application in Github, thankfully this is
-rather easy. Go to: https://github.com/settings/developers and click on
+rather easy. Go to: [https://github.com/settings/developers](https://github.com/settings/developers) and click on
 **"Register new application"** at the top right.
 
 Now fill out the fields:
@@ -110,7 +110,7 @@ We then create the first commit inside the new lib:
 {% endhighlight %}
 
 
-Now let's create the repo. Let's go to https://github.com/new and create the
+Now let's create the repo. Let's go to [https://github.com/new](https://github.com/settings/developers] and create the
 repo.
 
 ![](https://i.imgur.com/owN2yXK.png)
