@@ -118,7 +118,7 @@ We then create the first commit inside the new lib:
 {% endhighlight %}
 
 
-Now let's create the github repo. Let's go to [https://github.com/new](https://github.com/new] and create the
+Now let's create the github repo. Let's go to [https://github.com/new](https://github.com/new) and create the
 repo.
 
 ![](https://i.imgur.com/owN2yXK.png)
