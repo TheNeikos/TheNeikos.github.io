@@ -240,12 +240,12 @@ and start using it! Or secure it a bit more against accidental merges.
 
 ### Forcing checks before merge
 
-Navigate to your repository and click on settings on the bottom left, then go
-to the branches tab and protect the `master` branch.
+Navigate to your github repository and click on settings on the bottom left, then go
+to the branches tab and 'protect' the `master` branch.
 
 Then you can re-affirm that you want to protect the branch and require status
-checks before merging. I like to include administrators because they can
-write code that is just as bad :) as the average person.
+checks before merging. I like to include administrators as they can
+write code that is just as bad as the average person :) .
 
 Don't forget to check Drone at the bottom to make it **required**.
 
