@@ -195,6 +195,12 @@ RUN apt-get install curl file git build-essential -y && \
     | sh -s -- -y --disable-sudo
 ```
 
+If you need any additional libraries be sure to install them here too! Or your
+build will fail later on. If you are unsure what libraries are needed then
+check out the sources first (or perhaps they have their own CI and signal which
+libraries are needed.) As a last recourse you could always open an issue on
+their site, shoot a mail or otherwise contact them.
+
 Then we build it!
 
 {% highlight bash %}
