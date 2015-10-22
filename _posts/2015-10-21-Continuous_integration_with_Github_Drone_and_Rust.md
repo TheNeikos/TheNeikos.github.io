@@ -7,6 +7,10 @@ title: Continuous Integration with Github and Drone for Rust Projects
 The combination of Github and Drone (or any other CI) is quite powerful when it
 comes to assuring that your pull requests are not breaking any existing tests.
 
+For those who have never heard of Drone: [Drone](https://drone.io) is an
+open source CI Server that is easy to install and compatible with lots of
+different services. You can check out the [repo, it's on Github as well.](https://github.com/drone/drone)
+
 In this Blog post I will show you how to get from 0 to a github repository with
 tests for a rust library.
 
