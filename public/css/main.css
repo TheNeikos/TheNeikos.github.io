@@ -62,3 +62,7 @@ code {
 .highlight pre {
     overflow: auto;
 }
+
+p {
+    text-align: justify;
+}
