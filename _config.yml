@@ -15,3 +15,8 @@ markdown: redcarpet
 
 gems:
     - jekyll-sitemap
+
+
+syntax-highlighting:
+    enabled: true
+    css: syntax.css
