@@ -47,26 +47,7 @@ Once that is done we can install drone itself!
 
 {% highlight bash %}
 clouduser@drone-test:~$ wget downloads.drone.io/master/drone.deb
---2015-10-21 11:36:58--  http://downloads.drone.io/master/drone.deb
-Resolving downloads.drone.io (downloads.drone.io)... 54.231.32.52
-Connecting to downloads.drone.io (downloads.drone.io)|54.231.32.52|:80... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 7722384 (7.4M) [application/x-debian-package]
-Saving to: ‘drone.deb’
-
-100%[==============================================================================================>] 7,722,384   5.49MB/s   in 1.3s
-
-2015-10-21 11:37:00 (5.49 MB/s) - ‘drone.deb’ saved [7722384/7722384]
-
 clouduser@drone-test:~$ sudo dpkg --install drone.deb
-sudo: unable to resolve host drone-test
-Selecting previously unselected package drone.
-(Reading database ... 55631 files and directories currently installed.)
-Preparing to unpack drone.deb ...
-Unpacking drone (0.3.0-alpha-1442513246) ...
-Setting up drone (0.3.0-alpha-1442513246) ...
-Your system ubuntu 14: using upstart to control Drone
-drone start/running, process 8024
 {% endhighlight %}
 
 Now go checkout `http://yourip/`. It should display a link to the setup guide.
@@ -122,14 +103,10 @@ cargo new awesome_lib
 We then create the first commit inside the new lib:
 
 {% highlight bash %}
-cd awesome_lib
+~/p/rust $ cd awesome_lib
 ~/p/r/awesome_lib (master)$ git add .
 ~/p/r/awesome_lib (master)$ git commit -m "Initial Commit"
 [master (root-commit) a0b044a] Initial Commit
- 3 files changed, 9 insertions(+)
- create mode 100644 .gitignore
- create mode 100644 Cargo.toml
- create mode 100644 src/lib.rs
 {% endhighlight %}
 
 
@@ -190,17 +167,6 @@ Then we create a new branch and add our changes to that and push them!
 ~/p/r/awesome_lib (master)$ git checkout -b add-drone
 ~/p/r/awesome_lib (add-drone)$ git add .drone.yml
 ~/p/r/awesome_lib (add-drone)$ git commit -m "Add .drone.yml"
-[add-drone b894e05] Add .drone.yml
- 1 file changed, 9 insertions(+)
- create mode 100644 .drone.yml
-~/p/r/awesome_lib (add-drone)$ git push origin add-drone
-Counting objects: 3, done.
-Delta compression using up to 8 threads.
-Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 1.08 KiB | 0 bytes/s, done.
-Total 3 (delta 0), reused 0 (delta 0)
-To git@github.com:TheNeikos/awesome_lib.git
- * [new branch]      add-drone -> add-drone
 {% endhighlight %}
 
 Perfect. Now let's make that pull request! If you go back to your repo on Github
@@ -248,14 +214,6 @@ Then we upload it:
 
 {% highlight bash %}
 ~/t/rust_image> docker push neikos/rust:1.3
-The push refers to a repository [docker.io/neikos/rust] (len: 1)
-bc9ad00de680: Image successfully pushed
-76be1ef20317: Image already exists
-82554298ff4f: Image already exists
-08ab09376d9a: Image already exists
-9f5beeea5d8a: Image already exists
-b8b73eaafc6e: Image already exists
-1.3: digest: sha256:73ab1f422b220511286e6b7afcdd1decaaf1081fcb3d6b68c758b7a99dd4cdf9 size: 10109
 {% endhighlight %}
 
 Now we restart the drone build. Click on the red cross next to your commit
