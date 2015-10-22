@@ -123,8 +123,8 @@ We then create the first commit inside the new lib:
 
 {% highlight console %}
 cd awesome_lib
-~/p/r/awesome_lib (master)> git add .
-~/p/r/awesome_lib (master)> git commit -m "Initial Commit"
+~/p/r/awesome_lib (master)$ git add .
+~/p/r/awesome_lib (master)$ git commit -m "Initial Commit"
 [master (root-commit) a0b044a] Initial Commit
  3 files changed, 9 insertions(+)
  create mode 100644 .gitignore
@@ -187,13 +187,13 @@ cache:
 Then we create a new branch and add our changes to that and push them!
 
 {% highlight console %}
-~/p/r/awesome_lib (master)> git checkout -b add-drone
-~/p/r/awesome_lib (add-drone)> git add .drone.yml
-~/p/r/awesome_lib (add-drone)> git commit -m "Add .drone.yml"
+~/p/r/awesome_lib (master)$ git checkout -b add-drone
+~/p/r/awesome_lib (add-drone)$ git add .drone.yml
+~/p/r/awesome_lib (add-drone)$ git commit -m "Add .drone.yml"
 [add-drone b894e05] Add .drone.yml
  1 file changed, 9 insertions(+)
  create mode 100644 .drone.yml
-~/p/r/awesome_lib (add-drone)> git push origin add-drone
+~/p/r/awesome_lib (add-drone)$ git push origin add-drone
 Counting objects: 3, done.
 Delta compression using up to 8 threads.
 Compressing objects: 100% (3/3), done.
