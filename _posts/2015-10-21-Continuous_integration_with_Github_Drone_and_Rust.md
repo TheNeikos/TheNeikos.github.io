@@ -191,8 +191,8 @@ Okay, so let's create a dockerfile that will allow us to have cargo and rust.
 FROM ubuntu:15.04
 
 RUN apt-get install curl file git build-essential -y && \
-curl -sSf https://static.rust-lang.org/rustup.sh \
-| sh -s -- -y --disable-sudo
+    curl -sSf https://static.rust-lang.org/rustup.sh \
+    | sh -s -- -y --disable-sudo
 ```
 
 Then we build it!
