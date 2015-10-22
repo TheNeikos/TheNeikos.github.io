@@ -30,13 +30,13 @@ Getting Started
 ### Drone
 First we will install drone on the Ubuntu server, so log in there.
 
-{% highlight console %}
+{% highlight bash %}
 clouduser@drone-test:~$
 {% endhighlight %}
 
 Alright! Now let's get started:
 
-{% highlight console %}
+{% highlight bash %}
 clouduser@drone-test:~$ sudo apt-get update
 / ..things.. /
 clouduser@drone-test:~$ sudo apt-get install docker.io
@@ -45,7 +45,7 @@ clouduser@drone-test:~$ sudo apt-get install docker.io
 Once that is done we can install drone itself!
 
 
-{% highlight console %}
+{% highlight bash %}
 clouduser@drone-test:~$ wget downloads.drone.io/master/drone.deb
 --2015-10-21 11:36:58--  http://downloads.drone.io/master/drone.deb
 Resolving downloads.drone.io (downloads.drone.io)... 54.231.32.52
@@ -115,13 +115,13 @@ If you still have the drone server open you may now close the connection.
 If you have a place where you usually create projects go there now and then
 let's create a new cargo lib.
 
-{% highlight console %}
+{% highlight bash %}
 cargo new awesome_lib
 {% endhighlight %}
 
 We then create the first commit inside the new lib:
 
-{% highlight console %}
+{% highlight bash %}
 cd awesome_lib
 ~/p/r/awesome_lib (master)$ git add .
 ~/p/r/awesome_lib (master)$ git commit -m "Initial Commit"
@@ -144,7 +144,7 @@ Before copying the commands be sure to use ssh so that you authenticate through
 that instead of typing your username/password everytime. (It can get annoying
 quickly.)
 
-{% highlight console %}
+{% highlight bash %}
 git remote add origin git@github.com:TheNeikos/awesome_lib.git
 git push origin master
 {% endhighlight %}
@@ -186,7 +186,7 @@ cache:
 
 Then we create a new branch and add our changes to that and push them!
 
-{% highlight console %}
+{% highlight bash %}
 ~/p/r/awesome_lib (master)$ git checkout -b add-drone
 ~/p/r/awesome_lib (add-drone)$ git add .drone.yml
 ~/p/r/awesome_lib (add-drone)$ git commit -m "Add .drone.yml"
@@ -223,13 +223,13 @@ curl -sSf https://static.rust-lang.org/rustup.sh \
 
 Then we build it!
 
-{% highlight console %}
+{% highlight bash %}
 ~/t/rust_image> docker build .
 {% endhighlight %}
 
 It should finish with:
 
-{% highlight console %}
+{% highlight bash %}
     Rust is ready to roll.
 
  ---> bc9ad00de680
@@ -240,13 +240,13 @@ Successfully built bc9ad00de680
 In that last line is an id, we will need that in the next step, copy it and
 put it in the next command:
 
-{% highlight console %}
+{% highlight bash %}
 ~/t/rust_image> docker tag <THE_ID> <DOCKER_USERNAME>/rust:1.3
 {% endhighlight %}
 
 Then we upload it:
 
-{% highlight console %}
+{% highlight bash %}
 ~/t/rust_image> docker push neikos/rust:1.3
 The push refers to a repository [docker.io/neikos/rust] (len: 1)
 bc9ad00de680: Image successfully pushed
