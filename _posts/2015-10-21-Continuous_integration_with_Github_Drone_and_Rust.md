@@ -30,17 +30,22 @@ Getting Started
 ### Drone
 First we will install drone on the Ubuntu server, so log in there.
 
+{% highlight shell-session %}
     clouduser@drone-test:~$
+{% endhighlight %}
 
 Alright! Now let's get started:
 
+{% highlight shell-session %}
     clouduser@drone-test:~$ sudo apt-get update
     / ..things.. /
     clouduser@drone-test:~$ sudo apt-get install docker.io
+{% endhighlight %}
 
 Once that is done we can install drone itself!
 
 
+{% highlight shell-session %}
     clouduser@drone-test:~$ wget downloads.drone.io/master/drone.deb
     --2015-10-21 11:36:58--  http://downloads.drone.io/master/drone.deb
     Resolving downloads.drone.io (downloads.drone.io)... 54.231.32.52
@@ -62,6 +67,7 @@ Once that is done we can install drone itself!
     Setting up drone (0.3.0-alpha-1442513246) ...
     Your system ubuntu 14: using upstart to control Drone
     drone start/running, process 8024
+{% endhighlight %}
 
 Now go checkout `http://yourip/`. It should display a link to the setup guide.
 If you wish to also have SSL enable you should check it out, but otherwise this
@@ -88,9 +94,11 @@ There you will find two important fields:
 Go back to your drone server and open `/etc/drone/drone.toml` as root with your
 favorite editor and look for `[github]` and uncomment these lines:
 
+{% highlight toml %}
     [github]
     client=""
     secret=""
+{% endhighlight %}
 
 Now you can fill those fields with the information from your github. Then save
 and you can close the file. Now we restart the drone server so that it reads
@@ -107,10 +115,13 @@ If you still have the drone server open you may now close the connection.
 If you have a place where you usually create projects go there now and then
 let's create a new cargo lib.
 
+{% highlight shell-session %}
     cargo new awesome_lib
+{% endhighlight %}
 
 We then create the first commit inside the new lib:
 
+{% highlight shell-session %}
     cd awesome_lib
     ~/p/r/awesome_lib (master)> git add .
     ~/p/r/awesome_lib (master)> git commit -m "Initial Commit"
@@ -119,6 +130,7 @@ We then create the first commit inside the new lib:
      create mode 100644 .gitignore
      create mode 100644 Cargo.toml
      create mode 100644 src/lib.rs
+{% endhighlight %}
 
 
 Now let's create the repo. Let's go to https://github.com/new and create the
@@ -132,8 +144,10 @@ Before copying the commands be sure to use ssh so that you authenticate through
 that instead of typing your username/password everytime. (It can get annoying
 quickly.)
 
+{% highlight shell-session %}
     git remote add origin git@github.com:TheNeikos/awesome_lib.git
     git push origin master
+{% endhighlight %}
 
 Awesome! We now get to the interesting parts.
 
@@ -158,7 +172,7 @@ version should yours differ (it probably will in the future)
 If you don't have a docker account yet you can create one
 [here](https://docs.docker.com/docker-hub/accounts/)
 
-```yaml
+{% highlight yaml %}
 image: <your docker name>/rust:1.3
 env:
     - CARGO_TARGET_DIR=/var/cache/drone/cargo
@@ -168,10 +182,11 @@ script:
     - cargo test
 cache:
     - /var/cache/drone/cargo
-```
+{% endhighlight %}
 
 Then we create a new branch and add our changes to that and push them!
 
+{% highlight shell-session %}
     ~/p/r/awesome_lib (master)> git checkout -b add-drone
     ~/p/r/awesome_lib (add-drone)> git add .drone.yml
     ~/p/r/awesome_lib (add-drone)> git commit -m "Add .drone.yml"
@@ -186,6 +201,7 @@ Then we create a new branch and add our changes to that and push them!
     Total 3 (delta 0), reused 0 (delta 0)
     To git@github.com:TheNeikos/awesome_lib.git
      * [new branch]      add-drone -> add-drone
+{% endhighlight %}
 
 Perfect. Now let's make that pull request! If you go back to your repo on Github
 it should tell you that you can create a Pull Request.
@@ -206,23 +222,30 @@ RUN apt-get install curl file git build-essential -y && curl -sSf https://static
 
 Then we build it!
 
+{% highlight shell-session %}
     ~/t/rust_image> docker build .
+{% endhighlight %}
 
 It should finish with:
 
+{% highlight shell-session %}
         Rust is ready to roll.
 
      ---> bc9ad00de680
     Removing intermediate container 040774e66535
     Successfully built bc9ad00de680
+{% endhighlight %}
 
 In that last line is an id, we will need that in the next step, copy it and
 put it in the next command:
 
+{% highlight shell-session %}
     ~/t/rust_image> docker tag <THE_ID> <DOCKER_USERNAME>/rust:1.3
+{% endhighlight %}
 
 Then we upload it:
 
+{% highlight shell-session %}
     ~/t/rust_image> docker push neikos/rust:1.3
     The push refers to a repository [docker.io/neikos/rust] (len: 1)
     bc9ad00de680: Image successfully pushed
@@ -232,6 +255,7 @@ Then we upload it:
     9f5beeea5d8a: Image already exists
     b8b73eaafc6e: Image already exists
     1.3: digest: sha256:73ab1f422b220511286e6b7afcdd1decaaf1081fcb3d6b68c758b7a99dd4cdf9 size: 10109
+{% endhighlight %}
 
 Now we restart the drone build. Click on the red cross next to your commit
 in your pull request on Github. It should take you to your drone server. And if

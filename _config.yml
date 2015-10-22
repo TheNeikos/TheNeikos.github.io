@@ -20,3 +20,5 @@ gems:
 syntax-highlighting:
     enabled: true
     css: syntax.css
+
+highlighter: pygments
