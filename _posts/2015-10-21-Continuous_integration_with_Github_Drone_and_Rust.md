@@ -122,8 +122,8 @@ that instead of typing your username/password everytime. (It can get annoying
 quickly.)
 
 {% highlight bash %}
-git remote add origin git@github.com:TheNeikos/awesome_lib.git
-git push origin master
+~/p/rust $ git remote add origin git@github.com:<yourusername>/awesome_lib.git
+~/p/rust $ git push origin master
 {% endhighlight %}
 
 Awesome! We now get to the interesting parts.
