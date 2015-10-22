@@ -97,7 +97,7 @@ If you have a place where you usually create projects go there now and then
 let's create a new cargo lib.
 
 {% highlight bash %}
-cargo new awesome_lib
+~/p/rust $ cargo new awesome_lib
 {% endhighlight %}
 
 We then create the first commit inside the new lib:
