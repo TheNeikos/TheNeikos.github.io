@@ -67,6 +67,8 @@ Now fill out the fields:
 
 ![](https://i.imgur.com/bDpQQM9.png)
 
+Once you have registered the Application it will show you more information.
+
 There you will find two important fields:
 
 - **Client ID**
@@ -83,7 +85,13 @@ secret=""
 
 Now you can fill those fields with the information from your github. Then save
 and you can close the file. Now we restart the drone server so that it reads
-the new configuration. You should now be greeted with a Github icon, allowing
+the new configuration.
+
+{% highlight bash %}
+clouduser@drone-test:~$ sudo restart drone
+{% endhighlight %}
+
+You should now be greeted with a Github icon, allowing
 you to sign in!
 
 We now have a drone server up and running and we have it linked with Github,
@@ -110,7 +118,7 @@ We then create the first commit inside the new lib:
 {% endhighlight %}
 
 
-Now let's create the repo. Let's go to [https://github.com/new](https://github.com/settings/developers] and create the
+Now let's create the github repo. Let's go to [https://github.com/new](https://github.com/new] and create the
 repo.
 
 ![](https://i.imgur.com/owN2yXK.png)
