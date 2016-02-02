@@ -10,7 +10,6 @@ baseurl:        /
 author:
     name:       Marcel M&uuml;ller
     email:      marcel-muller@hotmail.com
-markdown: redcarpet
 
 gems:
     - jekyll-sitemap
