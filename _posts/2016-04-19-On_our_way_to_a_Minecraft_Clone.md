@@ -80,8 +80,8 @@ use piston_window::*;
 use sdl2_window::Sdl2Window;
 
 fn main() {
-    let mut window : PistonWindow<(), Sdl2Window> = WindowSettings::new("Rustcraft!",
-                                                        [640, 480])
+    let mut window : PistonWindow<(), Sdl2Window> =
+        WindowSettings::new("Rustcraft!", [640, 480])
         .exit_on_esc(true).build().unwrap();
     let mut events : WindowEvents = window.events();
 
@@ -224,8 +224,8 @@ Vector from `piston-example`. It should be fairly straightforward to understand.
         20, 21, 22, 22, 23, 20, // back
     ];
 
-    let (vbuf, slice) = window.factory.create_vertex_buffer_indexed(&vertex_data,
-        index_data);
+    let (vbuf, slice) = window.factory
+        .create_vertex_buffer_indexed(&vertex_data, index_data);
 ```
 
 In the last line we then use our window (which has the OpenGl context) and
@@ -303,7 +303,8 @@ out vec4 o_Color;
 uniform sampler2D t_color;
 void main() {
     vec4 tex = texture(t_color, v_TexCoord);
-    float blend = dot(v_TexCoord-vec2(0.5,0.5), v_TexCoord-vec2(0.5,0.5));
+    float blend = dot(v_TexCoord-vec2(0.5,0.5),
+                      v_TexCoord-vec2(0.5,0.5));
     o_Color = mix(tex, vec4(0.0,0.0,0.0,0.0), blend*1.0);
 }
 ```
@@ -371,9 +372,11 @@ while let Some(e) = window.next() {
     first_person.event(&e);
 
     if let Some(_) = e.render_args() {
-        let args = e.render_args().unwrap(); // We can unwrap as this closure only gets called
-                                             // in the render loop
-        window.encoder.clear(&window.output_color, [0.3, 0.3, 0.3, 1.0]);
+        let args = e.render_args().unwrap();
+        // We can unwrap as this closure only gets called
+        // in the render loop
+        window.encoder.clear(&window.output_color,
+                             [0.3, 0.3, 0.3, 1.0]);
         window.encoder.clear_depth(&window.output_stencil, 1.0);
 
         data.u_model_view_proj = model_view_projection(
@@ -409,4 +412,11 @@ This is what I get on my screen:
 
 ![Rustcraft first picture](https://i.imgur.com/phS5nIq.png?1)
 
+And with this we conclude the first part, in the next post we will explore how
+to abstract away the cube so we could have multiple 'textures' for example.
+
+Another thing I want to do is to be able to interact with the cubes.
+
+
+See ya next time!
 
