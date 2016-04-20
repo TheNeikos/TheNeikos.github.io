@@ -15,7 +15,6 @@ the rare games that were actually **fun** to play, and still are today)*
 We will be using Piston, more specifically I have looked for crates that might
 fit and found theses:
 
-
 - [Piston Window](https://github.com/PistonDevelopers/piston_window), I will be
   using my local branch until [this
   PR](https://github.com/PistonDevelopers/piston_window/pull/130) gets merged as
@@ -38,8 +37,7 @@ We will call it rustcraft for now, we can always change it later on.
 Okay, let's `cd` into the directory and add some dependencies:
 
 ```sh
-$ cargo add --path ../piston_window/ piston_window
-$ # You should probably use the crate from crates.io
+$ cargo add piston_window
 $ cargo add camera_controllers
 $ cargo add image
 ```
@@ -96,7 +94,7 @@ If you now run `cargo run` you should have a little window with a nice green in
 it. Success! Let's get to drawing a cube.
 
 
-## Drawing a cube
+## Getting a cube
 
 So a cube is nothing more than 6 squares appropriately positioned. Keeping that
 in mind we can construct an Array of *Vertices* (sg. Vertex) in which to hold
@@ -169,9 +167,87 @@ gfx_pipeline!( pipe {
         gfx::preset::depth::LESS_EQUAL_WRITE,
 });
 
+
+fn main() { // From earlier
 ```
 
 Check out [this blog post](https://gfx-rs.github.io/2016/01/22/pso.html) to get
-an understanding of the Pipeline macro.
+an understanding of the Pipeline macro. There is also documentation in the code.
 
+
+Now that we have a way to represent the cube, let's do just that and use the
+Vector from `piston-example`. It should be fairly straightforward to understand.
+
+```rust
+    let vertex_data = vec![
+        //top (0, 0, 1)
+        Vertex::new([-1, -1,  1], [0, 0]),
+        Vertex::new([ 1, -1,  1], [1, 0]),
+        Vertex::new([ 1,  1,  1], [1, 1]),
+        Vertex::new([-1,  1,  1], [0, 1]),
+        //bottom (0, 0, -1)
+        Vertex::new([ 1,  1, -1], [0, 0]),
+        Vertex::new([-1,  1, -1], [1, 0]),
+        Vertex::new([-1, -1, -1], [1, 1]),
+        Vertex::new([ 1, -1, -1], [0, 1]),
+        //right (1, 0, 0)
+        Vertex::new([ 1, -1, -1], [0, 0]),
+        Vertex::new([ 1,  1, -1], [1, 0]),
+        Vertex::new([ 1,  1,  1], [1, 1]),
+        Vertex::new([ 1, -1,  1], [0, 1]),
+        //left (-1, 0, 0)
+        Vertex::new([-1,  1,  1], [0, 0]),
+        Vertex::new([-1, -1,  1], [1, 0]),
+        Vertex::new([-1, -1, -1], [1, 1]),
+        Vertex::new([-1,  1, -1], [0, 1]),
+        //front (0, 1, 0)
+        Vertex::new([-1,  1, -1], [0, 0]),
+        Vertex::new([ 1,  1, -1], [1, 0]),
+        Vertex::new([ 1,  1,  1], [1, 1]),
+        Vertex::new([-1,  1,  1], [0, 1]),
+        //back (0, -1, 0)
+        Vertex::new([ 1, -1,  1], [0, 0]),
+        Vertex::new([-1, -1,  1], [1, 0]),
+        Vertex::new([-1, -1, -1], [1, 1]),
+        Vertex::new([ 1, -1, -1], [0, 1]),
+    ];
+
+    let index_data: &[u8] = &[
+         0,  1,  2,  2,  3,  0, // top
+         4,  6,  5,  6,  4,  7, // bottom
+         8,  9, 10, 10, 11,  8, // right
+        12, 14, 13, 14, 12, 16, // left
+        16, 18, 17, 18, 16, 19, // front
+        20, 21, 22, 22, 23, 20, // back
+    ];
+
+    let (vbuf, slice) = window.factory.create_vertex_buffer_indexed(&vertex_data,
+        index_data);
+```
+
+In the last line we then use our window (which has the OpenGl context) and
+create an indexed vertex buffer.
+
+Let's try compiling it!
+
+Oops, looks like we forgot to add the trait for it, let's add those.
+
+```rust
+use gfx::traits::*;
+```
+
+Put that line just below our earlier `use` and it should compile with just two
+`unused variable` warnings. Let's go use them!
+
+
+## Texturing a Cube
+
+Now that we have an idea where the different points of our cube should look
+like, it's time to tell the game what they look like.
+
+I've decided to go with a simple image of stone for now.
+
+![stone.png](/public/rustcraft/stone.png)
+
+Okay, let's see what we need to draw this:
 
