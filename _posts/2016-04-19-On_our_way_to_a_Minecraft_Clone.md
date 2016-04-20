@@ -12,8 +12,14 @@ the rare games that were actually **fun** to play, and still are today)*
 
 ## Starting out
 
+This is not a tutorial, but mostly a journal of some sort. So there might be
+things that are not explained. You should be able to find those things out by
+googling or checking out the respective documentations. I might still explain a
+thing or two though. The 'we' is used liberally here, you might want do
+something else.
+
 We will be using Piston, more specifically I have looked for crates that might
-fit and found theses:
+fit and found these:
 
 - [Piston Window](https://github.com/PistonDevelopers/piston_window), I will be
   using my local branch until [this
@@ -83,9 +89,8 @@ fn main() {
     let mut window : PistonWindow<(), Sdl2Window> =
         WindowSettings::new("Rustcraft!", [640, 480])
         .exit_on_esc(true).build().unwrap();
-    let mut events : WindowEvents = window.events();
 
-    while let Some(e) = events.next(&mut window) {
+    while let Some(e) = window.next() {
         window.draw_2d(&e, |_c, g| {
             clear([0.3, 0.85, 0.2, 1.0], g); // A lovely green
         });
@@ -417,6 +422,7 @@ to abstract away the cube so we could have multiple 'textures' for example.
 
 Another thing I want to do is to be able to interact with the cubes.
 
+The source code can be found [here](https://github.com/TheNeikos/rustcraft/tree/v0.1)
 
 See ya next time!
 
