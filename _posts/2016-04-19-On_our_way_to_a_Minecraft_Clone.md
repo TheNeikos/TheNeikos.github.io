@@ -40,6 +40,7 @@ Okay, let's `cd` into the directory and add some dependencies:
 $ cargo add piston_window
 $ cargo add camera_controllers
 $ cargo add image
+$ cargo add pistoncore-sdl2_window
 ```
 
 Let's also directly download/build everything so that later on it will be
@@ -69,15 +70,17 @@ However, we will have to tell the Rust Compiler to include `piston_window` and
 ```rust
 extern crate piston_window;
 extern crate camera_controllers;
+extern crate sdl2_window;
 ```
 
 Now let's replace the default *Hello World* with one made for **Piston Window**.
 
 ```rust
 use piston_window::*;
+use sdl2_window::Sdl2Window;
 
 fn main() {
-    let mut window : PistonWindow = WindowSettings::new("Hello Piston!",
+    let mut window : PistonWindow<(), Sdl2Window> = WindowSettings::new("Rustcraft!",
                                                         [640, 480])
         .exit_on_esc(true).build().unwrap();
     let mut events : WindowEvents = window.events();
@@ -249,5 +252,161 @@ I've decided to go with a simple image of stone for now.
 
 ![stone.png](/public/rustcraft/stone.png)
 
-Okay, let's see what we need to draw this:
+Let's load it:
+
+```rust
+let stone = Texture::from_path(
+    &mut window.factory,
+    &Path::new("assets/stone.png"),
+    Flip::None,
+    &TextureSettings::new(),
+    );
+
+
+let sampler_info = gfx::tex::SamplerInfo::new(
+    gfx::tex::FilterMethod::Bilinear,
+    gfx::tex::WrapMode::Clamp
+    );
+
+let pso = window.factory.create_pipeline_simple(
+    Shaders::new().set(GLSL::V1_50,
+                       include_str!("../asset_src/cube_150.glslv"))
+                   .get(OpenGL::V3_2.to_glsl()).unwrap().as_bytes(),
+    Shaders::new().set(GLSL::V1_50,
+                       include_str!("../asset_src/cube_150.glslf"))
+                  .get(OpenGL::V3_2.to_glsl()).unwrap().as_bytes(),
+    gfx::state::CullFace::Nothing,
+    pipe::new()
+    ).unwrap();
+```
+
+`cube_150.glslv`:
+
+```glsl
+#version 150 core
+in ivec3 a_pos;
+in ivec2 a_tex_coord;
+out vec2 v_TexCoord;
+uniform mat4 u_model_view_proj;
+void main() {
+    v_TexCoord = a_tex_coord;
+    gl_Position = u_model_view_proj * vec4(a_pos, 1.0);
+}
+```
+
+`cube_150.glslf`:
+
+```glsl
+#version 150 core
+in vec2 v_TexCoord;
+out vec4 o_Color;
+uniform sampler2D t_color;
+void main() {
+    vec4 tex = texture(t_color, v_TexCoord);
+    float blend = dot(v_TexCoord-vec2(0.5,0.5), v_TexCoord-vec2(0.5,0.5));
+    o_Color = mix(tex, vec4(0.0,0.0,0.0,0.0), blend*1.0);
+}
+```
+
+For those that don't know what shaders are. They are programmable pieces of
+software on your Graphics Card that tell it how to process the information you
+give it in. I do suggest though you check out another tutorial on how this works
+to get a better understanding. [Open.Gl](https://open.gl) is a good resource.
+
+Back to topic, we now have a `Texture` Object into which we have loaded our
+`stone.png` picture.
+
+Then we create the final pipeline into which we give into our *V*ertex shader,
+as well as our *F*ragment shader.
+
+The next step is projection! We might have points floating in virtual space and
+something to draw them onto, we still didn't tell the Graphics Card where we
+are. In Computer Graphic programming this is usually solved such that the
+'Player' Camera does not move, but instead the whole world! This allows you to
+ignore problems such as Floating Point Imprecision, since all will be centered
+around (0,0). (This is what I've learned, if it's wrong please do tell me!)
+
+Let's set up projection:
+
+```rust
+let get_projection = |w: &PistonWindow| {
+    let draw_sie = w.window.draw_size();
+    CameraPerspective {
+        fov: 90.0, near_clip: 0.1, far_clip: 1000.0,
+        aspect_ratio: draw_size.width as f32 / draw_size.height as f32
+    }.projection()
+};
+
+let model_proj = vecmath::mat4_id();
+let mut projection = get_projection(&window);
+
+let mut first_person = FirstPerson::new(
+    [0.5, 0.5, 4.0],
+    FirstPersonSettings::keyboard_wasd()
+);
+```
+We make this a closure because later on we can check if the window changes size
+and re-calculate the projection.
+
+Let's create a new pipeline data object for the PSO we've defined earlier (in
+the macro)
+
+```rust
+let mut data = pipe::Data {
+    vbuf: vbuf.clone(),
+    u_model_view_proj: [[0.0; 4]; 4],
+    t_color: (stone.view, window.factory.create_sampler(sampler_info)),
+    out_color: window.output_color.clone(),
+    out_depth: window.output_stencil.clone(),
+    };
+
+```
+
+And data wise we're done! All that is left is actually drawing and giving the
+`first_person` object the input.
+
+
+```rust
+while let Some(e) = window.next() {
+    first_person.event(&e);
+
+    if let Some(_) = e.render_args() {
+        let args = e.render_args().unwrap(); // We can unwrap as this closure only gets called
+                                             // in the render loop
+        window.encoder.clear(&window.output_color, [0.3, 0.3, 0.3, 1.0]);
+        window.encoder.clear_depth(&window.output_stencil, 1.0);
+
+        data.u_model_view_proj = model_view_projection(
+            model_proj,
+            first_person.camera(args.ext_dt).orthogonal(),
+            projection
+        );
+        window.encoder.draw(&slice, &pso, &data);
+        window.encoder.flush(&mut window.device);
+    };
+
+    if let Some(_) = e.resize_args() {
+        projection = get_projection(&window);
+    }
+}
+```
+
+This code has a temporary *hack* due to a bug in the interface in
+`piston_window`. Once [this
+issue](https://github.com/PistonDevelopers/piston_window/issues/136#issuecomment-212360248)
+is solved I will change this part to the correct way. (Or just fix it in the
+next part of this series.)
+
+
+Let's run the code and see our result!
+
+```sh
+cargo run
+```
+
+
+This is what I get on my screen:
+
+![Rustcraft first picture](https://i.imgur.com/phS5nIq.png?1)
+
 
