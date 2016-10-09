@@ -3,12 +3,11 @@ title: About Me
 layout: page
 ---
 
-Hello there. I haven't got a lot to talk about yet in my life, but there are a
-few things I am willing to share anyway.
+Hello there.
 
-I'm a developer. Currently my favorite languages to get stuff done are *C* and
-*Ruby*. I'm currently studying at the University of Furtwangen in Germany, I am
-trying to get my Bachelors in General Informatics.
+I'm a developer. Currently my favorite languages to get stuff done are *Rust*,
+*C* and *Ruby*. I'm currently studying at the University of Furtwangen in
+Germany, I'm currently writing my Bachelor Thesis at the ESOC.
 
 For development I mainly use the Vim editor and the Linux commandline. My
 preferred Linux distribution is Arch, which I am currently using.
