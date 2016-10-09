@@ -84,6 +84,7 @@ _Note that this code is just to get an idea of what is possible, it might not
 compile due to missing implementations that would be too long/verbose to add!_
 
 **Hello World in Iron**
+
 ```rust
 use iron::{Iron, Request, Response, IronResult};
 
@@ -103,6 +104,7 @@ fn main() {
 ```
 
 **Basic Router**
+
 ```rust
 extern crate iron;
 extern crate router;
@@ -149,6 +151,7 @@ fn main() {
 ```
 
 **More Advanced Routing with Middleware and Mount**
+
 ```rust
 extern crate iron;
 extern crate router;
@@ -318,13 +321,13 @@ plugin.
 It is also quite intuitive to work with:
 
 ```rust
-    let name = "Noone";
-    let output = html! {
-        div.hello "World!"
-        p {
-            strong { "Hello " (name) }
-        }
-    };
+let name = "Noone";
+let output = html! {
+    div.hello "World!"
+    p {
+        strong { "Hello " (name) }
+    }
+};
 ```
 
 It returns a `RenderOnce<String>` which means it is easy to use and reason with.
@@ -332,15 +335,15 @@ The thing I found really fancy is that you can nest those calls! Allowing to me
 to do something like that:
 
 ```rust
-    html! {
-        div.row (PreEscaped(Column::new(html! {
-            h1 "Hello there!"
+html! {
+    div.row (PreEscaped(Column::new(html! {
+        h1 "Hello there!"
 
-            p {
-                "Heya there"
-            }
-        })))
-    };
+        p {
+            "Heya there"
+        }
+    })))
+};
 ```
 
 Which then in turn allows me transform or wrap the code!
@@ -348,29 +351,29 @@ Which then in turn allows me transform or wrap the code!
 Another neat thing is to build forms:
 
 ```rust
-    html! {
-       (PreEscaped(Form::new(FormMethod::Post, &format!("/submissions/{}", sub.id))
-          .with_encoding("multipart/form-data")
-          .with_fields(&[
-               &Input::new("Image", "sub_image")
-                    .with_type("file")
-                    .with_errors(errors.as_ref().map(|x| &x.image)),
-               &Input::new("Title", "sub_name")
-                    .with_value(&sub.title[..])
-                    .with_errors(errors.as_ref().map(|x| &x.title)),
-               &Textarea::new("Description", "sub_desc")
-                    .with_value(&sub.description)
-                    .with_errors(None),
-               &Select::new("Visibility", "sub_visibility")
-                    .add_option("Public","0")
-                    .add_option("Private", "2")
-                    .with_selected(sub.get_visibility().as_str()),
-               &Input::new("", "")
-                    .with_value("Update")
-                    .with_type("submit")
-                    .with_class("btn btn-primary")
-          ])))
-    }
+html! {
+   (PreEscaped(Form::new(FormMethod::Post, &format!("/submissions/{}", sub.id))
+      .with_encoding("multipart/form-data")
+      .with_fields(&[
+           &Input::new("Image", "sub_image")
+                .with_type("file")
+                .with_errors(errors.as_ref().map(|x| &x.image)),
+           &Input::new("Title", "sub_name")
+                .with_value(&sub.title[..])
+                .with_errors(errors.as_ref().map(|x| &x.title)),
+           &Textarea::new("Description", "sub_desc")
+                .with_value(&sub.description)
+                .with_errors(None),
+           &Select::new("Visibility", "sub_visibility")
+                .add_option("Public","0")
+                .add_option("Private", "2")
+                .with_selected(sub.get_visibility().as_str()),
+           &Input::new("", "")
+                .with_value("Update")
+                .with_type("submit")
+                .with_class("btn btn-primary")
+      ])))
+}
 ```
 
 Although `Form` and `Column` are my own types I [built][10].
