@@ -4,21 +4,23 @@ date: 2016-10-08 12:38:18
 title: Using Rust for Webdev as a Hobby Programmer
 ---
 
-I've been a huge fan of rust ever since I started using it (which was right
+I've been a huge fan of Rust ever since I started using it (which was right
 before 1.0 as I didn't like updating my code all the time to the latest syntax).
 At first I created a few silly applications, some games, tried my hand at
 libraries; but in the end I was still drawn back into Web Development.
 You have to know that I grew up with PHP and then Ruby for Web Development, so I
 went from CakePHP to Ruby on Rails, which was amazing! RoR had so many features
 out of the box that I used, it just worked at first.
-But then came the pitfalls of frameworks: indirection over indirection.
-This is what causes the hours upon hours of debugging on why when removing a
-part from A it breaks B.
+But then came the pitfalls of dynamic frameworks: indirection over indirection
+over indirection. Which I believe is a case of "If you make it possible, people
+will use it."
+This indirection is what causes the hours upon hours of debugging spent on why
+when removing a part from A it breaks B.
 
-Enter [Rust][2]. I have personally found few issues that I really disagree with
-that are not simply design choices (based on taste rather than engineering) or
-were my fault all along. A few others have talked about their experiences, so if
-you want a more nuanced approach you could check those out, the [/r/rust][6]
+Enter [Rust][2]. I have personally found few caveats that I disagree with that
+are not simply design choices (based on taste rather than engineering) or were
+my fault all along. A few others have talked about their experiences, so if you
+want a more nuanced approach you could check those out, the [/r/rust][6]
 subreddit is also an excellent place to look for. (Some I've read: [here][3],
 [here][4], or [here][5]). While they do adress a few shortcomings it is overall
 possible to work with it. (And most problems seem not intrinsic to the language,
@@ -34,7 +36,7 @@ TheNeikos or by mail at "neikos at neikos.email")
 ## Rust and the libraries
 
 Due to the libraries and plugins I planned to use I had to switch to the nightly
-branch of Rust. This can be a deal break to some, however I had no troubles so
+branch of Rust. This can be a deal breaker to some, however I had no troubles so
 far since the only thing unstable I use are `plugin`, `custom_derive`,
 `custom_attribute` and `question_mark`. It might be that some of the crates use
 more experimental features, however they are well-tested from what I saw.
@@ -53,23 +55,26 @@ need an image handling library.
 
 My choices so far are:
 
-- [`iron`][iron] -- I like the middleware approach, I'm slowly getting to it's pitfalls
-  (regarding code duplication and resource loading) but I have ideas to solve
-  those and thus still recommend using it
-- [`diesel`][diesel] -- A good looking (API-wise) library, while slightly verbose at
-  times, it works really well.
-- [`bcrypt`][bcrypt] -- I only need it for password hashing, so this is a weakly held
-  choice in term of library. It works and it does what it says on the tin.
-- [`log`][log] + [`log4rs`][log4rs] -- I had some log4j at University and didn't like it (might
-  be the Java though... brr) but log4rs seems to fit better into my paradigms
-  and it works.
-- [`maud`][maud] -- My favorite find in terms of libraries. It allows you to write a
-  Rust Macro that spits out HTML! It's a first taste of what plugins will allow
-  you to do and I love it.
+- [`iron`][iron] -- I like the middleware approach, I'm slowly getting to it's
+  pitfalls (regarding code duplication and resource loading) but I have ideas to
+  solve those and thus still recommend using it
+- [`diesel`][diesel] -- A good looking (API-wise) library, while slightly
+  verbose at times, it works really well.
+- [`bcrypt`][bcrypt] -- I only need it for password hashing, so this is a weakly
+  held choice in term of library. It works and it does what it says on the tin.
+- [`log`][log] + [`log4rs`][log4rs] -- I had some log4j at University and didn't
+  like it (might be the Java though... brr) but log4rs seems to fit better into
+  my paradigms and it works.
+- [`maud`][maud] -- My favorite find in terms of libraries. It allows you to
+  write a Rust Macro that spits out HTML! It's a first taste of what plugins
+  will allow you to do and I love it.
+- [`image`][image] -- An image library built for games, but it also works for
+  webdev in this case: simple image manipulation.
 
 A lot of these choices are subjective at the end due to the fact that there are
 many different choices and that none have differentiated themselves yet. So feel
-free to use something else! I can vouch for the aformentioned Libraries though.
+free to use something else! I can say for the aformentioned Libraries though
+that they do work together.
 
 ## Middleware and Iron
 
@@ -198,7 +203,7 @@ quite enjoyable and flexible to use.
 
 ## The ORM, Diesel (with r2d2)
 
-Diesel is a quite ergonomic compiler plugin that allows one to specify rust
+Diesel is a quite ergonomic compiler plugin that allows one to specify Rust
 structs for given database tables. I've only used it in conjunction with
 Postgres so I cannot say anything about other backends.
 
@@ -206,7 +211,7 @@ Postgres so I cannot say anything about other backends.
 
 There are a few steps to get Diesel up and running to be able to use it nicely:
 
-- Create a module that calls `infer_schema!(<DATABASE_URL>)` to generate rust
+- Create a module that calls `infer_schema!(<DATABASE_URL>)` to generate Rust
   code for your database
 - Create a Struct to be used as a representation of a given table (examples
   below)
@@ -262,8 +267,8 @@ pub struct User {
 ```
 
 It is important that the fields are in the same order as you have defined them
-in your Database. (This is an implementation problem that might be fixed in the
-Future so I've read) If you do not it will not compile.
+in your Database. This is an implementation problem that might be fixed in the
+Future so I've read, If you do not it will not compile.
 
 Then, you can start using it:
 
@@ -381,7 +386,7 @@ Although `Form` and `Column` are my own types I [built][10].
 # Conclusion
 
 All in all I think that it is quite possible to write Web Applications nicely.
-While one has to use Rust nightly with my choice of libraries once could use
+While one has to use Rust nightly with my choice of libraries one could also use
 diesel with syntex on the stable branch and substitute Maud with something like
 Horrorshow.
 
@@ -401,3 +406,4 @@ Horrorshow.
 [log]:https://github.com/rust-lang-nursery/log
 [log4rs]:https://github.com/sfackler/log4rs
 [maud]:https://github.com/lfairy/maud
+[image]:https://github.com/PistonDevelopers/image
