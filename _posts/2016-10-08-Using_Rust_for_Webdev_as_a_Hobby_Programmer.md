@@ -145,7 +145,7 @@ fn main() {
     router.get("/", handlers::world, "index");
     router.get("/hello/:name", handlers::answer, "answer");
 
-    let server = Iron::new(handler);
+    let server = Iron::new(router);
     match server.http("0.0.0.0:3000") {
         Ok(()) => { /*Listening blocks the thread */ }
         Err(e) => {
