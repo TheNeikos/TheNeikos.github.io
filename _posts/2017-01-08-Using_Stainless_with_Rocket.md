@@ -21,8 +21,10 @@ One part of that is being able to easily test your applications. After all,
 without tests it is almost impossible to be confident that the output conforms
 to what is expected, especially in an evolving codebase.
 
-I've been recently wanting to try out [stainless](stainless) as well, so I
-thought why not combine both and see how they play together!
+I've been recently wanting to try out [stainless](stainless) as well. Stainless
+is a plugin that allows you to write tests easier through a macro like syntax.
+Especially the `before_each` part of testing seemed very useful.  Check out it's
+project page for some example!
 
 ## Setting up
 
