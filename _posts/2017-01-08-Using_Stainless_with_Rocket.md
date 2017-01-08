@@ -4,7 +4,7 @@ date: 2017-01-08 18:06:03
 title: Using Stainless with Rocket
 ---
 
-> In this Blog post I will see how Rocket, Stainless and Serde work together to
+> In this Blog post we will see how Rocket, Stainless and Serde work together to
 > create easy and usable testing.
 
 *This blog posts assumes Rust nightly from at least version 1.15. Others haven't
@@ -26,7 +26,7 @@ thought why not combine both and see how they play together!
 
 ## Setting up
 
-I will be using a simple rocket application that will just send back a JSON
+We will be using a simple rocket application that will just send back a JSON
 formatted string at the `/status` endpoint.
 
 Create the rust project:
