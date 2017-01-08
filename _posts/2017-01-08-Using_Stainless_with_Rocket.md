@@ -30,6 +30,7 @@ I will be using a simple rocket application that will just send back a JSON
 formatted string at the `/status` endpoint.
 
 Create the rust project:
+
 ```sh
 neikos ~/p/r/blog> cargo new --bin rocket_stainless
      Created binary (application) `rocket_stainless` project
@@ -38,6 +39,7 @@ neikos ~/p/r/b/rocket_stainless (master)>
 ```
 
 Now, let's add rocket and stainless as dependencies:
+
 ```sh
 neikos ~/p/r/b/rocket_stainless (master)> cargo add rocket
 neikos ~/p/r/b/rocket_stainless (master)> cargo add rocket_contrib
@@ -49,12 +51,15 @@ neikos ~/p/r/b/rocket_stainless (master)> cargo add -D stainless
 
 We also need to enable the testing feature when testing. Edit the `Cargo.toml`
 and add to the `dev-dependencies` table the following line:
+
 ```
 rocket = { version = "0.1.4", features = ["testing"] }
 ```
+
 > Be sure to match up the version with whatever rocket version you are using!
 
 Next step is setting everything up in `src/main.rs`:
+
 ```rust
 #![feature(plugin)]
 #![plugin(rocket_codegen)]
@@ -128,6 +133,7 @@ We now have a working Rocket application that returns a piece of JSON on
 `/status`. Let's write up some tests for it.
 
 We add this to the `src/main.rs`:
+
 ```rust
 
 #[cfg(test)]
