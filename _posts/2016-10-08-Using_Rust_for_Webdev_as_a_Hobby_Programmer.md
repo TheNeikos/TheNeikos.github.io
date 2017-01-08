@@ -53,22 +53,22 @@ are covered:
 What I wanted to write is a website to host an art community on. So I would also
 need an image handling library.
 
-My choices so far are:
+My choices so far are (with version numbers):
 
-- [`iron`][iron] -- I like the middleware approach, I'm slowly getting to it's
+- [`iron`][iron] (v0.4) -- I like the middleware approach, I'm slowly getting to it's
   pitfalls (regarding code duplication and resource loading) but I have ideas to
   solve those and thus still recommend using it
-- [`diesel`][diesel] -- A good looking (API-wise) library, while slightly
+- [`diesel`][diesel] (v0.7) -- A good looking (API-wise) library, while slightly
   verbose at times, it works really well.
-- [`bcrypt`][bcrypt] -- I only need it for password hashing, so this is a weakly
+- [`bcrypt`][bcrypt] (v0.1) -- I only need it for password hashing, so this is a weakly
   held choice in term of library. It works and it does what it says on the tin.
-- [`log`][log] + [`log4rs`][log4rs] -- I had some log4j at University and didn't
+- [`log`][log] (v0.3) + [`log4rs`][log4rs] (v0.4) -- I had some log4j at University and didn't
   like it (might be the Java though... brr) but log4rs seems to fit better into
   my paradigms and it works.
-- [`maud`][maud] -- My favorite find in terms of libraries. It allows you to
+- [`maud`][maud] (v0.11) -- My favorite find in terms of libraries. It allows you to
   write a Rust Macro that spits out HTML! It's a first taste of what plugins
   will allow you to do and I love it.
-- [`image`][image] -- An image library built for games, but it also works for
+- [`image`][image] (v0.10) -- An image library built for games, but it also works for
   webdev in this case: simple image manipulation.
 
 A lot of these choices are subjective at the end due to the fact that there are
@@ -145,7 +145,7 @@ fn main() {
     router.get("/", handlers::world, "index");
     router.get("/hello/:name", handlers::answer, "answer");
 
-    let server = Iron::new(handler);
+    let server = Iron::new(router);
     match server.http("0.0.0.0:3000") {
         Ok(()) => { /*Listening blocks the thread */ }
         Err(e) => {
