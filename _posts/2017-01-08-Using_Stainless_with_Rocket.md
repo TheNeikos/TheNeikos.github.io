@@ -46,7 +46,7 @@ cargo add rocket
 cargo add rocket_contrib
 cargo add rocket_codegen
 cargo add serde_derive
-cargo add -D stainless
+cargo add --dev stainless
 ```
 > `cargo add` is part of the useful [`cargo-edit`][ce] package of utilities
 
