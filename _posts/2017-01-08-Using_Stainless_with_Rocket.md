@@ -32,20 +32,19 @@ formatted string at the `/status` endpoint.
 Create the rust project:
 
 ```sh
-neikos ~/p/r/blog> cargo new --bin rocket_stainless
+cargo new --bin rocket_stainless
      Created binary (application) `rocket_stainless` project
-neikos ~/p/r/blog> cd rocket_stainless/
-neikos ~/p/r/b/rocket_stainless (master)>
+cd rocket_stainless/
 ```
 
 Now, let's add rocket and stainless as dependencies:
 
 ```sh
-neikos ~/p/r/b/rocket_stainless (master)> cargo add rocket
-neikos ~/p/r/b/rocket_stainless (master)> cargo add rocket_contrib
-neikos ~/p/r/b/rocket_stainless (master)> cargo add rocket_codegen
-neikos ~/p/r/b/rocket_stainless (master)> cargo add serde_derive
-neikos ~/p/r/b/rocket_stainless (master)> cargo add -D stainless
+cargo add rocket
+cargo add rocket_contrib
+cargo add rocket_codegen
+cargo add serde_derive
+cargo add -D stainless
 ```
 > `cargo add` is part of the useful [`cargo-edit`][ce] package of utilities
 
