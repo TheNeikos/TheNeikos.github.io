@@ -10,18 +10,18 @@ title: Using Stainless with Rocket
 *This blog posts assumes Rust nightly from at least version 1.15. Others haven't
 been tested, so YMMV.*
 
-[Rocket](rocket) is a new Rust web framework that has been released to the
+[Rocket][rocket] is a new Rust web framework that has been released to the
 public late last year. It aims to provide a simple way to write and maintain
 fast and safe web applications.
 
 I have been waiting for something like this for quite some time, from the way it
-looks it tries to be the [Rails](rails) of the Rust world.
+looks it tries to be the [Rails][rails] of the Rust world.
 
 One part of that is being able to easily test your applications. After all,
 without tests it is almost impossible to be confident that the output conforms
 to what is expected, especially in an evolving codebase.
 
-I've been recently wanting to try out [stainless](stainless) as well. Stainless
+I've been recently wanting to try out [stainless][stainless] as well. Stainless
 is a plugin that allows you to write tests easier through a macro like syntax.
 Especially the `before_each` part of testing seemed very useful.  Check out it's
 project page for some example!
@@ -198,7 +198,7 @@ extend without need to write a lot of boilerplate and are able to focus on
 the important bits of the tests.
 
 I would love to hear back what kind of testing strategies you use! So do send me
-a message on [reddit](reddit) or shoot (launch?) me an email.
+a message on [reddit][reddit] or shoot (launch?) me an email.
 
 
 [rocket]: https://rocket.rs
