@@ -45,6 +45,7 @@ Now, let's add rocket and stainless as dependencies:
 cargo add rocket
 cargo add rocket_contrib
 cargo add rocket_codegen
+cargo add serde
 cargo add serde_derive
 cargo add --dev stainless
 ```
