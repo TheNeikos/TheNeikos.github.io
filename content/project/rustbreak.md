@@ -1,11 +1,13 @@
 ---
 title: "Rustbreak"
 description: "Self-contained fast Keyvalue Database"
-repo: "rustbreak"
+# repo: "rustbreak"
 tags: ["rust", "database"]
 weight: 1
 draft: false
 ---
+
+### [Repository][repo] --- [Documentation][docs]
 
 ## Summary
 
@@ -27,13 +29,13 @@ Rustbreak! It will not behave well, or work as advised.
 *This only holds for Version 2.0, later versions might add more or remove some
 of these problems.*
 
-### [Latest Documentation][docs]
-
-[docs]: https://docs.rs/rustbreak/
-
 ### Licensing
 
 Rustbreak is dual licensed, it is available for free under the GPL license for
 all purposes. If you however plan on making money with it without open-sourcing
 your software, you might be better served with a commercial license. You can
 request one by contacting me by email.
+
+[docs]: https://docs.rs/rustbreak/
+[repo]: https://github.com/TheNeikos/rustbreak
+
