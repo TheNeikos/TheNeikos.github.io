@@ -1,0 +1,41 @@
+#rust_logo {
+    animation-duration: 120s;
+    animation-name: wiggle;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+
+    margin: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 5em;
+    height: 5em;
+}
+
+@keyframes wiggle {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+div.well {
+    background: rgba(0,0,0,.5);
+    padding: 50px;
+}
+
+.mute-background {
+    background: rgba(0,0,0,0.7);
+}
+
+p code.inline {
+    padding: 5px;
+    background: rgba(255,255,255,.1);
+}
