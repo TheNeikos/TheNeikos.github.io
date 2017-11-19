@@ -1,7 +1,7 @@
 ---
 date: 2016-01-22T19:54:54Z
 title: Diaspora Pod
-url: /2016/01/22/Diaspora_Pod/
+url: /Diaspora_Pod.html
 ---
 
 I've setup a Diaspora Pod and I welcome anyone to signup! You can find it here:

@@ -1,7 +1,7 @@
 ---
 date: 2014-10-16T03:06:16Z
 title: The Duck which is actually a Mouse
-url: /2014/10/16/The_Duck_which_is_actually_a_Mouse/
+url: /The_Duck_which_is_actually_a_Mouse.html
 ---
 
 Today, during our project work, we had decided to finally get ourselves a

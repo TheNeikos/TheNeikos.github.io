@@ -1,7 +1,7 @@
 ---
 date: 2015-09-30T17:14:43Z
 title: Zabbix - Monitoring
-url: /2015/09/30/Zabbix_-_Monitoring/
+url: /Zabbix_-_Monitoring.html
 ---
 
 Well, it's been a long time, but here is another blog post from my side.

@@ -1,7 +1,7 @@
 ---
 date: 2014-10-23T12:26:58Z
 title: Functional Programming
-url: /2014/10/23/Functional_Programming/
+url: /Functional_Programming.html
 ---
 
 Functional Programming. I have often heard about the difficulty in functional

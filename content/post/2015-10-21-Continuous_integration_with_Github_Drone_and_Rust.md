@@ -1,7 +1,7 @@
 ---
 date: 2015-10-21T11:25:33Z
 title: Continuous Integration with Github and Drone for Rust Projects
-url: /2015/10/21/Continuous_integration_with_Github_Drone_and_Rust/
+url: /Continuous_integration_with_Github_Drone_and_Rust.html
 ---
 
 The combination of Github and Drone (or any other CI) is quite powerful when it

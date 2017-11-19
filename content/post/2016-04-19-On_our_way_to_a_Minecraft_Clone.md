@@ -1,7 +1,7 @@
 ---
 date: 2016-04-19T09:37:03Z
 title: On our way to a Minecraft Clone
-url: /2016/04/19/On_our_way_to_a_Minecraft_Clone/
+url: /On_our_way_to_a_Minecraft_Clone.html
 ---
 
 It's been somewhat of a goal of mine to create a semi-functional 'Minecraft'

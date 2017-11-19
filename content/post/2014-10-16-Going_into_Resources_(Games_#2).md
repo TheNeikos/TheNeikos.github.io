@@ -1,7 +1,7 @@
 ---
 date: 2014-10-16T13:46:21Z
 title: 'Going into Resources (Games #2)'
-url: /2014/10/16/Going_into_Resources_(Games_#2)/
+url: /Going_into_Resources_(Games_-2).html
 ---
 
 I have talked with a friend of mine (who is rather knowleadgable) about an

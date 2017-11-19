@@ -1,7 +1,7 @@
 ---
 date: 2016-10-08T12:38:18Z
 title: Using Rust for Webdev as a Hobby Programmer
-url: /2016/10/08/Using_Rust_for_Webdev_as_a_Hobby_Programmer/
+url: /Using_Rust_for_Webdev_as_a_Hobby_Programmer.html
 ---
 
 I've been a huge fan of Rust ever since I started using it (which was right

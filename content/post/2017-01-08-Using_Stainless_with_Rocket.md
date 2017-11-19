@@ -1,7 +1,7 @@
 ---
 date: 2017-01-08T18:06:03Z
 title: Using Stainless with Rocket
-url: /2017/01/08/Using_Stainless_with_Rocket/
+url: /Using_Stainless_with_Rocket.html
 ---
 
 > In this Blog post we will see how Rocket, Stainless and Serde work together to
