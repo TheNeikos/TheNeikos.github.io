@@ -18,6 +18,16 @@ disablePathToLower = true
     highlightLanguages = ["go", "haskell", "rust"]
     pages = 5
 
+[outputs]
+home = ["HTML","RSS"]
+
+[mediaTypes]
+"application/rss" =  { suffix = "rss" }
+
+[outputFormats.RSS]
+mediatype = "application/rss"
+baseName = "feed"
+
 [[menu.main]]
     url = "/"
     name = "Home"
