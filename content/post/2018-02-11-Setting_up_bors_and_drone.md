@@ -1,6 +1,7 @@
 ---
 date: 2018-02-11 12:00:03
 title: Setting up Bors and Drone behind Nginx and SSL
+draft: true
 ---
 
 I've recently found myself in the need of CI in a private Github repository.
