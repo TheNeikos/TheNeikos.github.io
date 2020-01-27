@@ -22,7 +22,7 @@ disablePathToLower = true
 home = ["HTML","RSS"]
 
 [mediaTypes]
-"application/rss" =  { suffix = "rss" }
+"application/rss" =  { suffixex = ["rss"] }
 
 [outputFormats.RSS]
 mediatype = "application/rss"
