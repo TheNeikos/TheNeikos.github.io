@@ -1,6 +1,7 @@
 ---
 date: 2018-03-22 07:50:34
 title: Using sprocket-rails in production
+draft: true
 ---
 
 I'm sure we have all had a similar moment:
