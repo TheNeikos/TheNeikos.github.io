@@ -1,9 +1,9 @@
 ---
-date: 2020-01-27 09:07:47
+date: 2020-01-27T09:04:21Z
 title: How I do field research for Quantum Resistant Cryptography
 tags:
     - PHd
-    - pqc
+    - PQC
 ---
 
 After starting my PHd I've had to develop a way to find relevant papers. In

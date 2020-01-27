@@ -6,7 +6,7 @@ googleAnalytics = ""
 disablePathToLower = true
 
 [params]
-    author = "Neiks <Marcel Müller>"
+    author = "Neikos <Marcel Müller>"
     description = "Thoughts and musings"
     githubUsername = "TheNeikos"
     accent = "green"
