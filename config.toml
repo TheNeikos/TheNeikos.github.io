@@ -66,8 +66,3 @@ baseName = "feed"
     url = "https://telegram.me/TheNeikos"
     name = "telegram"
     weight = 4
-
-[[menu.icon]]
-    url = "https://mastodon.fun/@Neikos"
-    name = "random"
-    weight = 5
