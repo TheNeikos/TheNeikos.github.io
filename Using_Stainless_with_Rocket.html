@@ -1,0 +1,131 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Using Stainless with Rocket</title><style>html body{font-family:raleway,sans-serif;background-color:#fff}:root{--accent: green;--border-width:  5px }</style><link rel=stylesheet href=/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Raleway"><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-dark.min.css><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css integrity=sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN crossorigin=anonymous><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js></script><script>hljs.initHighlightingOnLoad();</script><script src=https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js></script><script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script><script>$(document).on('click',function(){$('.collapse').collapse('hide');})</script><script type=text/javascript>var _paq=_paq||[];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function(){_paq.push(['setTrackerUrl','https://api-1ae8886f4428fee007ebf3e570e5c1e3.hemera.sandcats.io']);_paq.push(['setSiteId',1]);_paq.push(['setApiToken','f33SDEYp33zx4vFBTZdm13NtTK9Ksd93EDx2kT1e982']);var d=document,g=d.createElement('script'),s=d.getElementsByTagName('script')[0];g.type='text/javascript';g.async=true;g.defer=true;g.src='https://md6h0twa65rihzm46p0e.hemera.sandcats.io/embed.js';s.parentNode.insertBefore(g,s);})();</script><meta name=generator content="Hugo 0.80.0"></head><body><nav class="navbar navbar-default navbar-fixed-top"><div class=container><div class=navbar-header><a class="navbar-brand visible-xs" href=#>Using Stainless with Rocket</a>
+<button class=navbar-toggle data-target=.navbar-collapse data-toggle=collapse>
+<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button></div><div class="collapse navbar-collapse"><ul class="nav navbar-nav"><li><a href=/>Home</a></li><li><a href=/post/>Posts</a></li><li><a href=/project/>Projects</a></li></ul><ul class="nav navbar-nav navbar-right"><li class=navbar-icon><a href=mailto:neikos@neikos.email><i class="fa fa-envelope-o"></i></a></li><li class=navbar-icon><a href=https://github.com/TheNeikos/><i class="fa fa-github"></i></a></li><li class=navbar-icon><a href=https://stackoverflow.com/users/783825/neikos><i class="fa fa-stack-overflow"></i></a></li><li class=navbar-icon><a href=https://telegram.me/TheNeikos><i class="fa fa-telegram"></i></a></li></ul></div></div></nav><main><div class=item><h4><a href=/Using_Stainless_with_Rocket.html>Using Stainless with Rocket</a></h4><h5>January 8, 2017</h5></div><br><div class=text-justify><blockquote><p>In this Blog post we will see how Rocket, Stainless and Serde work together to
+create easy and usable testing.</p></blockquote><p><em>This blog posts assumes Rust nightly from at least version 1.15. Others haven&rsquo;t
+been tested, so YMMV.</em></p><p><a href=https://rocket.rs>Rocket</a> is a new Rust web framework that has been released to the
+public late last year. It aims to provide a simple way to write and maintain
+fast and safe web applications.</p><p>I have been waiting for something like this for quite some time, from the way it
+looks it tries to be the <a href=http://rubyonrails.org/>Rails</a> of the Rust world.</p><p>One part of that is being able to easily test your applications. After all,
+without tests it is almost impossible to be confident that the output conforms
+to what is expected, especially in an evolving codebase.</p><p>I&rsquo;ve been recently wanting to try out <a href=https://github.com/reem/stainless>stainless</a> as well. Stainless
+is a plugin that allows you to write tests easier through a macro like syntax.
+Especially the <code>before_each</code> part of testing seemed very useful. Check out it&rsquo;s
+project page for some example!</p><h2 id=setting-up>Setting up</h2><p>We will be using a simple rocket application that will just send back a JSON
+formatted string at the <code>/status</code> endpoint.</p><p>Create the rust project:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>cargo new --bin rocket_stainless
+     Created binary <span style=color:#f92672>(</span>application<span style=color:#f92672>)</span> <span style=color:#e6db74>`</span>rocket_stainless<span style=color:#e6db74>`</span> project
+cd rocket_stainless/
+</code></pre></div><p>Now, let&rsquo;s add rocket and stainless as dependencies:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>cargo add rocket
+cargo add rocket_contrib
+cargo add rocket_codegen
+cargo add serde
+cargo add serde_derive
+cargo add --dev stainless
+</code></pre></div><blockquote><p><code>cargo add</code> is part of the useful <a href=https://github.com/killercup/cargo-edit><code>cargo-edit</code></a> package of utilities</p></blockquote><p>We also need to enable the testing feature when testing. Edit the <code>Cargo.toml</code>
+and add to the <code>dev-dependencies</code> table the following line:</p><pre><code>rocket = { version = &quot;0.1.4&quot;, features = [&quot;testing&quot;] }
+</code></pre><blockquote><p>Be sure to match up the version with whatever rocket version you are using!</p></blockquote><p>Next step is setting everything up in <code>src/main.rs</code>:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#75715e>#![feature(plugin)]</span>
+<span style=color:#75715e>#![plugin(rocket_codegen)]</span>
+<span style=color:#75715e>#![cfg_attr(test, plugin(stainless))]</span>
+<span style=color:#66d9ef>extern</span> <span style=color:#66d9ef>crate</span> rocket;
+<span style=color:#66d9ef>extern</span> <span style=color:#66d9ef>crate</span> rocket_contrib;
+<span style=color:#75715e>#[macro_use]</span> <span style=color:#66d9ef>extern</span> <span style=color:#66d9ef>crate</span> serde_derive;
+
+<span style=color:#66d9ef>mod</span> routes {
+    <span style=color:#66d9ef>use</span> rocket_contrib::JSON;
+
+    <span style=color:#75715e>#[derive(Serialize)]</span>
+    <span style=color:#66d9ef>pub</span> <span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>Status</span> {
+        status: String,
+        hello: String,
+    }
+
+    <span style=color:#75715e>#[get(</span><span style=color:#e6db74>&#34;/status&#34;</span><span style=color:#75715e>)]</span>
+    <span style=color:#66d9ef>pub</span> <span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>status</span>() -&gt; <span style=color:#a6e22e>JSON</span><span style=color:#f92672>&lt;</span>Status<span style=color:#f92672>&gt;</span> {
+        JSON(Status {
+            status: String::from(<span style=color:#e6db74>&#34;Ok&#34;</span>),
+            hello: String::from(<span style=color:#e6db74>&#34;world&#34;</span>),
+        })
+    }
+}
+
+<span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>main</span>() {
+    rocket::ignite().mount(<span style=color:#e6db74>&#34;/&#34;</span>, routes<span style=color:#f92672>!</span>[routes::status]).launch();
+}
+</code></pre></div><p>The code should be fairly self-explanatory. In the first part we setup the
+executable to include the <code>rocket_codegen</code> plugin and also include the stainless
+plugin if we are compiling for tests. Then we have a small module (to keep
+things clean) where we declare a struct to serialize in a Rocket endpoint. In
+the main function we then launch rocket and and the server is up! (in orbit)</p><p>Okay, we are all set up. You can now run it with <code>cargo run</code> and it should open
+a local server:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>neikos ~/p/r/b/rocket_stainless <span style=color:#f92672>(</span>master<span style=color:#f92672>)</span> <span style=color:#f92672>[</span>130<span style=color:#f92672>]</span>&gt; cargo run
+    Finished debug <span style=color:#f92672>[</span>unoptimized + debuginfo<span style=color:#f92672>]</span> target<span style=color:#f92672>(</span>s<span style=color:#f92672>)</span> in 0.0 secs
+     Running <span style=color:#e6db74>`</span>target/debug/rocket_stainless<span style=color:#e6db74>`</span>
+🔧  Configured <span style=color:#66d9ef>for</span> development.
+    <span style=color:#f92672>=</span>&gt; listening: localhost:8000
+    <span style=color:#f92672>=</span>&gt; logging: Normal
+🛰  Mounting <span style=color:#e6db74>&#39;/&#39;</span>:
+    <span style=color:#f92672>=</span>&gt; GET /status
+🚀  Rocket has launched from http://localhost:8000...
+GET /status:
+    <span style=color:#f92672>=</span>&gt; Matched: GET /status
+    <span style=color:#f92672>=</span>&gt; Outcome: Success
+    <span style=color:#f92672>=</span>&gt; Response succeeded.
+
+// On another Shell
+
+neikos ~&gt; curl localhost:8000/status
+<span style=color:#f92672>{</span><span style=color:#e6db74>&#34;status&#34;</span>:<span style=color:#e6db74>&#34;Ok&#34;</span>,<span style=color:#e6db74>&#34;hello&#34;</span>:<span style=color:#e6db74>&#34;world&#34;</span><span style=color:#f92672>}</span>
+</code></pre></div><p>Now it&rsquo;s time to get to the&mldr;</p><h2 id=testing>Testing</h2><p>We now have a working Rocket application that returns a piece of JSON on
+<code>/status</code>. Let&rsquo;s write up some tests for it.</p><p>We add this to the <code>src/main.rs</code>:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust>
+<span style=color:#75715e>#[cfg(test)]</span>
+<span style=color:#75715e>#[allow(unused_variables)]</span>
+<span style=color:#66d9ef>mod</span> tests {
+    <span style=color:#66d9ef>use</span> rocket;
+    <span style=color:#66d9ef>use</span> rocket::testing::MockRequest;
+    <span style=color:#66d9ef>use</span> rocket::http::{Status, Method};
+
+    <span style=color:#66d9ef>use</span> routes;
+
+    describe<span style=color:#f92672>!</span> route_tests {
+        before_each {
+            <span style=color:#66d9ef>let</span> rocket <span style=color:#f92672>=</span> rocket::ignite().mount(<span style=color:#e6db74>&#34;/&#34;</span>, routes<span style=color:#f92672>!</span>[routes::status]);
+        }
+
+        describe<span style=color:#f92672>!</span> status {
+            before_each {
+                <span style=color:#66d9ef>let</span> <span style=color:#66d9ef>mut</span> req <span style=color:#f92672>=</span> MockRequest::new(Method::Get, <span style=color:#e6db74>&#34;/status&#34;</span>);
+                <span style=color:#66d9ef>let</span> <span style=color:#66d9ef>mut</span> res <span style=color:#f92672>=</span> req.dispatch_with(<span style=color:#f92672>&amp;</span>rocket);
+                <span style=color:#66d9ef>let</span> body_str <span style=color:#f92672>=</span> res.body().and_then(<span style=color:#f92672>|</span>b<span style=color:#f92672>|</span> b.into_string()).unwrap();
+            }
+
+            it <span style=color:#e6db74>&#34;responds with status OK 200&#34;</span> {
+                assert_eq<span style=color:#f92672>!</span>(res.status(), Status::Ok);
+            }
+
+            it <span style=color:#e6db74>&#34;responds with OK&#34;</span> {
+                assert<span style=color:#f92672>!</span>(body_str.contains(<span style=color:#e6db74>&#34;Ok&#34;</span>));
+            }
+
+            it <span style=color:#e6db74>&#34;responds with hello world&#34;</span> {
+                assert<span style=color:#f92672>!</span>(body_str.contains(<span style=color:#e6db74>&#34;hello&#34;</span>));
+                assert<span style=color:#f92672>!</span>(body_str.contains(<span style=color:#e6db74>&#34;world&#34;</span>));
+            }
+        }
+    }
+}
+</code></pre></div><p>This is a very simple test suite that just checks the above status endpoint.
+It should give one a simple overview of how these awesome crates work together
+seamlessly! There are still some errors here and there due to needing rust
+nightly, but all those I&rsquo;ve encountered so far were during compilation and not
+in runtime, and usually I was doing something wrong.</p><p>We can now run the tests and check if our endpoint behaves correctly:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh> cargo test
+    Finished debug <span style=color:#f92672>[</span>unoptimized + debuginfo<span style=color:#f92672>]</span> target<span style=color:#f92672>(</span>s<span style=color:#f92672>)</span> in 0.0 secs
+     Running target/debug/deps/rocket_stainless-d93b1173e0670f3f
+
+running <span style=color:#ae81ff>3</span> tests
+test tests::route_tests::status::responds_with_OK ... ok
+test tests::route_tests::status::responds_with_hello_world ... ok
+test tests::route_tests::status::responds_with_status_OK_200 ... ok
+
+test result: ok. <span style=color:#ae81ff>3</span> passed; <span style=color:#ae81ff>0</span> failed; <span style=color:#ae81ff>0</span> ignored; <span style=color:#ae81ff>0</span> measured
+</code></pre></div><p>Looks like it does, yay!</p><p>This concludes this post; we have now a working test suite that is easy to
+extend without need to write a lot of boilerplate and are able to focus on
+the important bits of the tests.</p><p>I would love to hear back what kind of testing strategies you use! So do send me
+a message on <a href="https://www.reddit.com/message/compose?to=theneikos">reddit</a> or shoot (launch?) me an email.</p></div></main><footer><p class="copyright text-muted">© All rights reserved. Powered by <a href=https://gohugo.io>Hugo</a> and <a href=https://github.com/calintat/minimal>Minimal</a></p></footer></body></html>

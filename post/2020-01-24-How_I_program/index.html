@@ -1,0 +1,187 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>How I program</title><style>html body{font-family:raleway,sans-serif;background-color:#fff}:root{--accent: green;--border-width:  5px }</style><link rel=stylesheet href=/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Raleway"><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-dark.min.css><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css integrity=sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN crossorigin=anonymous><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js></script><script>hljs.initHighlightingOnLoad();</script><script src=https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js></script><script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script><script>$(document).on('click',function(){$('.collapse').collapse('hide');})</script><script type=text/javascript>var _paq=_paq||[];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function(){_paq.push(['setTrackerUrl','https://api-1ae8886f4428fee007ebf3e570e5c1e3.hemera.sandcats.io']);_paq.push(['setSiteId',1]);_paq.push(['setApiToken','f33SDEYp33zx4vFBTZdm13NtTK9Ksd93EDx2kT1e982']);var d=document,g=d.createElement('script'),s=d.getElementsByTagName('script')[0];g.type='text/javascript';g.async=true;g.defer=true;g.src='https://md6h0twa65rihzm46p0e.hemera.sandcats.io/embed.js';s.parentNode.insertBefore(g,s);})();</script><meta name=generator content="Hugo 0.80.0"></head><body><nav class="navbar navbar-default navbar-fixed-top"><div class=container><div class=navbar-header><a class="navbar-brand visible-xs" href=#>How I program</a>
+<button class=navbar-toggle data-target=.navbar-collapse data-toggle=collapse>
+<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button></div><div class="collapse navbar-collapse"><ul class="nav navbar-nav"><li><a href=/>Home</a></li><li><a href=/post/>Posts</a></li><li><a href=/project/>Projects</a></li></ul><ul class="nav navbar-nav navbar-right"><li class=navbar-icon><a href=mailto:neikos@neikos.email><i class="fa fa-envelope-o"></i></a></li><li class=navbar-icon><a href=https://github.com/TheNeikos/><i class="fa fa-github"></i></a></li><li class=navbar-icon><a href=https://stackoverflow.com/users/783825/neikos><i class="fa fa-stack-overflow"></i></a></li><li class=navbar-icon><a href=https://telegram.me/TheNeikos><i class="fa fa-telegram"></i></a></li></ul></div></div></nav><main><div class=item><h4><a href=/post/2020-01-24-How_I_program/>How I program</a></h4><h5>January 24, 2021</h5><kbd class=item-tag>Rust</kbd> <kbd class=item-tag>Programming</kbd></div><br><div class=text-justify><p>Getting better at Programming is, as any skill, a gradual process. You start as a beginner, and then
+grow from there. Sadly, I did <strong>not</strong> write down my thoughts or feelings during that time. Or, at
+least not in any succinct form. As of this year, I&rsquo;ve now programmed for at least 10 years. I had
+started with C and frankly had no idea what I was doing (wanting to program &lsquo;a game&rsquo;, probably an
+MMO like all 16 year olds). So, I turned my mind to the web, exploring HTML, CSS and Javascript. I
+did not get any of it, but I managed to scrape by; copy-pasting various snippets from sites like
+<a href=https://www.selfhtml.org/>SelfHTML</a> or <a href=https://stackoverflow.com/>StackOverflow</a>. I am happy to
+say that nowadays I write most of my code myself, and only have to look online for examples or
+documentation. As my language is Rust (and has been since 2015), I will focus in this blog post on
+how I create a program.</p><h2 id=thinking-about-the-problems>Thinking about the Problems</h2><p>Before I write any kind of code, I first need to think about what I actually want to achieve.
+Frankly, I am not sure how one could do it in any other way. As an example, let&rsquo;s say we want to open
+a file given as a command line parameter and we will sum up all the lines as integers. What kind of
+problems could arise? And how could they be handled? &lsquo;Power user&rsquo;-centric software requires different
+UX than say one accessible for all.</p><p>So, I search for all the different parts of the program I need:</p><ul><li>Command line handling</li><li>File IO</li><li>Program limits</li></ul><p>For each I either use something I&rsquo;ve already learned about in the past (like <code>clap</code> or rather
+<code>structopt</code> for command line handling), or I have to use online searches (ddg/stackoverflow/etc…) to
+find out what to expect. What happens if the file is bigger than the available RAM? How could I do
+this in a streaming fashion? Are there any cool algorithms I could use to make it faster?</p><p>After this is done I have a good idea of the overall structure and possibly already an architecture
+in mind. So I start laying down the barebones of the program.</p><h2 id=abstractions>Abstractions</h2><p>Not too long ago I had a heated discussion with a friend of mine who was a mathematician. I had
+claimed that &ldquo;an abstraction is awesome, because it allows you to do more&rdquo; to which he answered
+rather confused &ldquo;No, if you abstract you can only do less.&rdquo; We then threw around some examples but
+had to settle it as a disagreement of what we were discussing. Today I realize what our two point of
+views are: On one side, you have the realists who looking at an object think &ldquo;I can do
+5 things with this,&rdquo; and when seen through an abstract see that now only a single thing can be done.
+On the other side are the abstractionists (I made that word up), who when looking at an
+abstraction think &ldquo;I can use this with so many objects.&rdquo; and when seeing a single object see it
+reduced to it&rsquo;s actual utility. My friend was a &lsquo;realist&rsquo; in his arguments, and I was an
+&lsquo;abstractionist&rsquo; which is why we could only disagree. But we were both right. When looking at an
+object through a lense you put the focus on a subset of its capabilities, thus reducing your
+options! But when looking at abstractions, you realize (heh) that you only need one object that
+fits the bill to achieve your goal. In my opinion, being able to switch between these two is the
+key to unlocking how to program effectively. Some advice may frame it as &lsquo;use the right amount of
+abstraction&rsquo; but I believe that it misses the aspect that you need both.</p><h2 id=the-actual-programming>The actual programming</h2><p>Having now said that, how does this translate to my daily programming? In practice, it&rsquo;s quite simple.
+You simple write it down, <strong>as if that is already your working code</strong>. For example:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust>
+<span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>main</span>() {
+    <span style=color:#66d9ef>let</span> file_path <span style=color:#f92672>=</span> get_file_path();
+    <span style=color:#66d9ef>let</span> file <span style=color:#f92672>=</span> std::io::File::open();
+    <span style=color:#66d9ef>let</span> <span style=color:#66d9ef>mut</span> sum <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>for</span> line <span style=color:#66d9ef>in</span> file.lines() {
+        sum <span style=color:#f92672>+=</span> line.parse();
+    }
+
+    println<span style=color:#f92672>!</span>(<span style=color:#e6db74>&#34;{}&#34;</span>, sum);
+}
+</code></pre></div><p>Now, this program doesn&rsquo;t compile and is not even complete, but it gives us a <em>start</em> and an <em>end</em>! You see,
+we have <code>sum</code> variable that <em>somehow</em> needs to be incremented until the end of the <code>main</code> function so that
+the correct result gets printed out. If we keep the earlier idea of abstraction in mind, we don&rsquo;t
+think about &lsquo;file access&rsquo; or &lsquo;parsing integers&rsquo; but we are simply thinking about the abstract process of
+summing up numbers.</p><p>The next step is to find out <em>how</em> do we get those numbers? I usually try to stay away from anything
+&lsquo;specific&rsquo; until I know that it fits the bill. For now, let&rsquo;s focus on the main part:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#66d9ef>for</span> line <span style=color:#66d9ef>in</span> file.lines() {
+    sum <span style=color:#f92672>+=</span> line.parse();
+}
+</code></pre></div><p>These three lines already assume quite a bunch:</p><ul><li>We have lines</li><li>They are numbers</li><li>They result fits into a single integer</li></ul><p>And of course any kind of errors that could happen when doing IO. Can we clean this up? Yeah! Let&rsquo;s punt
+it away from here and ignore any errors for now.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#66d9ef>let</span> sum <span style=color:#f92672>=</span> get_lines(file)
+    .map(<span style=color:#f92672>|</span>line<span style=color:#f92672>|</span> line.parse())
+    .sum();
+</code></pre></div><p>Now, this might not seem like much, but already we have simplified the problem by quite a lot. There is no
+more &lsquo;loop&rsquo; but only an iterator. Whatever <code>parse</code> returns, it has to be &ldquo;summable&rdquo; and <code>get_lines</code> has
+to return an iterator with &lsquo;lines&rsquo; that can be parsed (or the compiler will not be able to compile this later).</p><p>Now, I feel like we have gone as far as we could to simplify this section, so let&rsquo;s work through this from the
+beginning and adjust the code as needed. Starting with <code>get_lines</code>:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>get_lines</span>(input: <span style=color:#a6e22e>File</span>) -&gt; <span style=color:#a6e22e>impl</span> Iterator<span style=color:#f92672>&lt;</span>Item<span style=color:#f92672>=&amp;</span><span style=color:#66d9ef>str</span><span style=color:#f92672>&gt;</span> {
+    todo<span style=color:#f92672>!</span>()
+}
+</code></pre></div><p>Not bad for a first try! This is the barebones code to satisfy our previous program snippet. Now,
+how do we turn a <code>File</code> into an <code>Iterator</code> of lines? Let&rsquo;s check the
+<a href="https://doc.rust-lang.org/std/index.html?search=Lines">docs</a> for the most straightforward option.
+Now, I know that the correct choice here would be to use a <code>BufReader</code>, but how would one know that
+is the correct choice? First, you could just check them out from the top. The first item tells you
+&ldquo;This struct is generally created by calling <code>lines</code> on a <code>BufRead</code>.&rdquo; It is an <code>Iterator</code> which
+returns <code>String</code>! Hm, a <code>str</code> and <code>String</code> is not important here, so: Success! But what about the
+other search results? Are there better ones? The second item says &ldquo;This struct is created with the
+<code>lines</code> method on <code>str</code>.&rdquo; And it returns an <code>Iterator</code> of <code>&str</code>. Hmm.. we don&rsquo;t have a
+<code>str</code> and instead have a <code>File</code>. That is not a problem though, since we could call <code>read_to_string</code>
+on our <code>File</code> and use the resulting <code>String</code>! And I would say that is a perfectly valid strategy. Right
+now, it&rsquo;s all about finding a path between the what you have (the input) and what you need (the
+output). You can always optimize later. Since we already know of a good choice, we will simply use
+<code>BufReader</code> here. How do we turn a <code>File</code> into a <code>BufReader</code>? Time to read some more documentation!</p><p><code>BufReader</code> has two methods to create one, and both take a <code>T: Read</code> bound. Meaning, whatever
+you give to it, it has to implement the <code>Read</code> trait. (This is quite similar to the idea of a function getting a <code>File</code>
+and returning an <code>Iterator&lt;&str></code> except applied to objects) Luckily, <code>File</code> <em>does</em> implement <code>Read</code>
+so we can simply pass it into the constructor.</p><p>Now, there is one issue. Every time we try to read the file an error could happen. Which is why
+<code>std::io::Lines</code> returns an iterator of <code>Result</code>s. So, let&rsquo;s switch from <code>Iterator&lt;Item=&str></code> to
+<code>Iterator&lt;Item=Result&lt;String>></code> and hope that we can deal with it down the line.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>get_lines</span>(input: <span style=color:#a6e22e>File</span>) -&gt; <span style=color:#a6e22e>impl</span> Iterator<span style=color:#f92672>&lt;</span>Item<span style=color:#f92672>=</span>Result<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;&gt;</span> {
+    <span style=color:#66d9ef>let</span> buf_read <span style=color:#f92672>=</span> std::io::BufRead::new(input);
+
+    buf_read.lines()
+}
+</code></pre></div><p>And we are done for that part.</p><p>Going back to our iterator:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#66d9ef>let</span> sum <span style=color:#f92672>=</span> get_lines(file)
+    .map(<span style=color:#f92672>|</span>line<span style=color:#f92672>|</span> line.parse())
+    .sum();
+</code></pre></div><p>We now know that <code>get_lines</code> returns an iterator of <code>Result</code>s, so what are our options here?</p><ul><li><code>unwrap</code> everything and let the program crash</li><li>handle the error gracefully</li></ul><p>Since now we can take an informed decision, let&rsquo;s opt to crash the program. IO Errors are really out of
+scope of the program and the error message should help the user diagnose the issue.</p><p>Instead of <code>unwrap</code> I&rsquo;d use <code>expect</code> here, just to customize the panic message.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#66d9ef>let</span> sum <span style=color:#f92672>=</span> get_lines(file)
+    .map(<span style=color:#f92672>|</span>line<span style=color:#f92672>|</span> line.expect(<span style=color:#e6db74>&#34;to read the file&#34;</span>).parse())
+    .sum();
+</code></pre></div><p>So, let&rsquo;s do a mid-way check! How do we get from <code>String</code> to <code>usize</code>? Luckily such a <code>parse</code>
+function really does exist! You can find it here:
+<a href=https://doc.rust-lang.org/std/primitive.str.html#method.parse>parse</a>. <code>usize</code> implements <code>FromStr</code>, so all&rsquo;s well.
+But wait, <code>parse</code> returns another <code>Result</code>! What if the line is not a parseable number? Well, we can&rsquo;t really
+fix that, so we can also expect the user to fix it. Another <code>expect</code> it is:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#66d9ef>let</span> sum <span style=color:#f92672>=</span> get_lines(file)
+    .map(<span style=color:#f92672>|</span>line<span style=color:#f92672>|</span> line.expect(<span style=color:#e6db74>&#34;to read the file&#34;</span>).parse().expect(<span style=color:#e6db74>&#34;to be a number line&#34;</span>))
+    .sum();
+</code></pre></div><p>And that is our main loop done! Let&rsquo;s go check out the how to parse arguments. I know that <code>structopt</code> is a good choice,
+so I add it to my <code>Cargo.toml</code> and check out its <a href=https://docs.rs/structopt/0.3.21/structopt/>documentation</a>. Well,
+that is fairly simple to use:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#75715e>#[derive(Debug, structopt::StructOpt)]</span>
+<span style=color:#75715e>#[structopt(name = </span><span style=color:#e6db74>&#34;file summarizer&#34;</span><span style=color:#75715e>, about = </span><span style=color:#e6db74>&#34;Sums up all the lines of a file&#34;</span><span style=color:#75715e>)]</span>
+<span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>Opt</span> {
+    <span style=color:#75715e>#[structopt(name = </span><span style=color:#e6db74>&#34;FILE&#34;</span><span style=color:#75715e>, parse(from_os_str))]</span>
+    file_name: <span style=color:#a6e22e>PathBuf</span>,
+}
+</code></pre></div><p>Great! Everything is there. Now, let&rsquo;s plug all the individual pieces together:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#75715e>#[derive(Debug, structopt::StructOpt)]</span>
+<span style=color:#75715e>#[structopt(name = </span><span style=color:#e6db74>&#34;file summarizer&#34;</span><span style=color:#75715e>, about = </span><span style=color:#e6db74>&#34;Sums up all the lines of a file&#34;</span><span style=color:#75715e>)]</span>
+<span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>Opt</span> {
+    <span style=color:#75715e>#[structopt(name = </span><span style=color:#e6db74>&#34;FILE&#34;</span><span style=color:#75715e>, parse(from_os_str))]</span>
+    file_name: <span style=color:#a6e22e>std</span>::path::PathBuf,
+}
+
+<span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>get_lines</span>(input: <span style=color:#a6e22e>std</span>::fs::File) -&gt; <span style=color:#a6e22e>impl</span> Iterator<span style=color:#f92672>&lt;</span>Item <span style=color:#f92672>=</span> std::io::Result<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;&gt;</span> {
+    <span style=color:#66d9ef>use</span> std::io::BufRead;
+    <span style=color:#66d9ef>let</span> buf_read <span style=color:#f92672>=</span> std::io::BufReader::new(input);
+
+    buf_read.lines()
+}
+
+<span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>main</span>() {
+    <span style=color:#66d9ef>use</span> structopt::StructOpt;
+    <span style=color:#66d9ef>let</span> opt <span style=color:#f92672>=</span> Opt::from_args();
+    <span style=color:#66d9ef>let</span> file <span style=color:#f92672>=</span> std::fs::File::open(<span style=color:#f92672>&amp;</span>opt.file_name).expect(<span style=color:#e6db74>&#34;to open the file&#34;</span>);
+    <span style=color:#66d9ef>let</span> sum: <span style=color:#66d9ef>usize</span> <span style=color:#f92672>=</span> get_lines(file)
+        .map(<span style=color:#f92672>|</span>line<span style=color:#f92672>|</span> {
+            line.expect(<span style=color:#e6db74>&#34;to read the file&#34;</span>)
+                .parse::<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>usize</span><span style=color:#f92672>&gt;</span>()
+                .expect(<span style=color:#e6db74>&#34;to be a number&#34;</span>)
+        })
+        .sum();
+    println<span style=color:#f92672>!</span>(<span style=color:#e6db74>&#34;{}&#34;</span>, sum);
+}
+</code></pre></div><p>I ran it through an extra <code>cargo fmt</code> and plugged some type holes <code>rustc</code> was complaining about.
+And it works!</p><pre><code>[01:05:20] neikos@katzenpalast /home/neikos/projects/rust/blog_example
+&gt; cat test
+123
+34
+540
+908284089
+324
+111
+1
+1
+1
+1
+1
+[01:05:23] neikos@katzenpalast /home/neikos/projects/rust/blog_example
+&gt; cargo run -- test
+    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+     Running `target/debug/blog_example test`
+908285226
+[01:05:25] neikos@katzenpalast /home/neikos/projects/rust/blog_example
+&gt; cargo run
+    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+     Running `target/debug/blog_example`
+error: The following required arguments were not provided:
+    &lt;FILE&gt;
+
+USAGE:
+    blog_example &lt;FILE&gt;
+
+For more information try --help
+[01:05:33] neikos@katzenpalast /home/neikos/projects/rust/blog_example
+&gt; cargo run -- --help
+    Finished dev [unoptimized + debuginfo] target(s) in 0.01s
+     Running `target/debug/blog_example --help`
+file summarizer 0.1.0
+Sums up all the lines of a file
+
+USAGE:
+    blog_example &lt;FILE&gt;
+
+FLAGS:
+    -h, --help       Prints help information
+    -V, --version    Prints version information
+
+ARGS:
+    &lt;FILE&gt;
+
+</code></pre><p>So, this is the gist of I program all my current projects. I start with a high level overview and
+then keep on iterating while switching between &lsquo;realist&rsquo; (aka actual types that do the work) and
+&lsquo;abstractionist&rsquo; (aka abstract API points). The walkthrough of how I program should also serve as an overview
+of what I consider the thresholds of when to change from which viewpoint to the other. In my mind it feels a bit
+like playing Tennis where you keep switching sides and punt the &lsquo;ball&rsquo; to the other.</p><p>Cheers</p></div></main><footer><p class="copyright text-muted">© All rights reserved. Powered by <a href=https://gohugo.io>Hugo</a> and <a href=https://github.com/calintat/minimal>Minimal</a></p></footer></body></html>

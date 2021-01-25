@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rust on Neikos &amp; Programming</title>
+    <link>http://neikos.me/tags/Rust/</link>
+    <description>Recent content in Rust on Neikos &amp; Programming</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Jan 2021 23:34:20 +0000</lastBuildDate><atom:link href="http://neikos.me/tags/Rust/feed" rel="self" type="application/rss" />
+    <item>
+      <title>Rustbreak</title>
+      <link>http://neikos.me/project/rustbreak/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://neikos.me/project/rustbreak/</guid>
+      <description>Repository &amp;mdash; Documentation Summary Rustbreak is a very simple to use database. It is meant to be used as a quick drop in database for all sorts of tools, where setting up an SQL infrastructure would be too much.
+When to use Use Rustbreak only if you understand these caveats:
+ Single file (depending on filesystem this might cause problems later on) Meant to be human readable and editable Does not scale to multiple concurrent processes (it is thread safe though)  If you need, or forseeable need better than those points, then do not use Rustbreak!</description>
+    </item>
+    
+    <item>
+      <title>How I program</title>
+      <link>http://neikos.me/post/2020-01-24-How_I_program/</link>
+      <pubDate>Sun, 24 Jan 2021 23:34:20 +0000</pubDate>
+      
+      <guid>http://neikos.me/post/2020-01-24-How_I_program/</guid>
+      <description>Getting better at Programming is, as any skill, a gradual process. You start as a beginner, and then grow from there. Sadly, I did not write down my thoughts or feelings during that time. Or, at least not in any succinct form. As of this year, I&amp;rsquo;ve now programmed for at least 10 years. I had started with C and frankly had no idea what I was doing (wanting to program &amp;lsquo;a game&amp;rsquo;, probably an MMO like all 16 year olds).</description>
+    </item>
+    
+  </channel>
+</rss>

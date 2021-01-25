@@ -1,0 +1,243 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>On our way to a Minecraft Clone</title><style>html body{font-family:raleway,sans-serif;background-color:#fff}:root{--accent: green;--border-width:  5px }</style><link rel=stylesheet href=/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Raleway"><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-dark.min.css><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css integrity=sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN crossorigin=anonymous><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js></script><script>hljs.initHighlightingOnLoad();</script><script src=https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js></script><script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script><script>$(document).on('click',function(){$('.collapse').collapse('hide');})</script><script type=text/javascript>var _paq=_paq||[];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function(){_paq.push(['setTrackerUrl','https://api-1ae8886f4428fee007ebf3e570e5c1e3.hemera.sandcats.io']);_paq.push(['setSiteId',1]);_paq.push(['setApiToken','f33SDEYp33zx4vFBTZdm13NtTK9Ksd93EDx2kT1e982']);var d=document,g=d.createElement('script'),s=d.getElementsByTagName('script')[0];g.type='text/javascript';g.async=true;g.defer=true;g.src='https://md6h0twa65rihzm46p0e.hemera.sandcats.io/embed.js';s.parentNode.insertBefore(g,s);})();</script><meta name=generator content="Hugo 0.80.0"></head><body><nav class="navbar navbar-default navbar-fixed-top"><div class=container><div class=navbar-header><a class="navbar-brand visible-xs" href=#>On our way to a Minecraft Clone</a>
+<button class=navbar-toggle data-target=.navbar-collapse data-toggle=collapse>
+<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button></div><div class="collapse navbar-collapse"><ul class="nav navbar-nav"><li><a href=/>Home</a></li><li><a href=/post/>Posts</a></li><li><a href=/project/>Projects</a></li></ul><ul class="nav navbar-nav navbar-right"><li class=navbar-icon><a href=mailto:neikos@neikos.email><i class="fa fa-envelope-o"></i></a></li><li class=navbar-icon><a href=https://github.com/TheNeikos/><i class="fa fa-github"></i></a></li><li class=navbar-icon><a href=https://stackoverflow.com/users/783825/neikos><i class="fa fa-stack-overflow"></i></a></li><li class=navbar-icon><a href=https://telegram.me/TheNeikos><i class="fa fa-telegram"></i></a></li></ul></div></div></nav><main><div class=item><h4><a href=/On_our_way_to_a_Minecraft_Clone.html>On our way to a Minecraft Clone</a></h4><h5>April 19, 2016</h5></div><br><div class=text-justify><p>It&rsquo;s been somewhat of a goal of mine to create a semi-functional &lsquo;Minecraft&rsquo;
+clone. I usually get stuck somewhere, and today I want to document what I do and
+how far I get, simply for anteriority purposes. <em>(Why Minecraft? It is one of
+the rare games that were actually <strong>fun</strong> to play, and still are today)</em></p><h2 id=starting-out>Starting out</h2><p>This is not a tutorial, but mostly a journal of some sort. So there might be
+things that are not explained. You should be able to find those things out by
+googling or checking out the respective documentations. I might still explain a
+thing or two though. The &lsquo;we&rsquo; is used liberally here, you might want do
+something else.</p><p>We will be using Piston, more specifically I have looked for crates that might
+fit and found these:</p><ul><li><p><a href=https://github.com/PistonDevelopers/piston_window>Piston Window</a>, I will be
+using my local branch until <a href=https://github.com/PistonDevelopers/piston_window/pull/130>this
+PR</a> gets merged as
+I prefer that style.</p></li><li><p><a href=https://github.com/PistonDevelopers/camera_controllers>Camera Controllers</a></p></li><li><p><a href=https://github.com/PistonDevelopers/image>Image</a> since we will have textures
+at some point</p></li><li><p>Perhaps <a href=https://github.com/bjz/cgmath>CGMath</a> at some point?</p></li></ul><p>Alright, let&rsquo;s get started:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ cargo new --bin rustcraft
+</code></pre></div><p>We will call it rustcraft for now, we can always change it later on.</p><p>Okay, let&rsquo;s <code>cd</code> into the directory and add some dependencies:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ cargo add piston_window
+$ cargo add camera_controllers
+$ cargo add image
+$ cargo add pistoncore-sdl2_window
+</code></pre></div><p>Let&rsquo;s also directly download/build everything so that later on it will be
+quicker. (And we won&rsquo;t need internet until we update either Rust or the
+dependencies)</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ cargo build
+</code></pre></div><p>Now let&rsquo;s get started, our first objective is to get the camera setup and to
+draw a simple cube!</p><p>I will be using (neo)vim as an editor, but of course you can use whatever you
+want.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ vim src/main.rs
+</code></pre></div><p>There is still the default Hello World, we can leave it for now.</p><p>However, we will have to tell the Rust Compiler to include <code>piston_window</code> and
+<code>camera_controllers</code>. Put it right at the top of <code>main.rs</code>.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#66d9ef>extern</span> <span style=color:#66d9ef>crate</span> piston_window;
+<span style=color:#66d9ef>extern</span> <span style=color:#66d9ef>crate</span> camera_controllers;
+<span style=color:#66d9ef>extern</span> <span style=color:#66d9ef>crate</span> sdl2_window;
+</code></pre></div><p>Now let&rsquo;s replace the default <em>Hello World</em> with one made for <strong>Piston Window</strong>.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#66d9ef>use</span> piston_window::<span style=color:#f92672>*</span>;
+<span style=color:#66d9ef>use</span> sdl2_window::Sdl2Window;
+
+<span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>main</span>() {
+    <span style=color:#66d9ef>let</span> <span style=color:#66d9ef>mut</span> window : <span style=color:#a6e22e>PistonWindow</span><span style=color:#f92672>&lt;</span>(), Sdl2Window<span style=color:#f92672>&gt;</span> <span style=color:#f92672>=</span>
+        WindowSettings::new(<span style=color:#e6db74>&#34;Rustcraft!&#34;</span>, [<span style=color:#ae81ff>640</span>, <span style=color:#ae81ff>480</span>])
+        .exit_on_esc(<span style=color:#66d9ef>true</span>).build().unwrap();
+
+    <span style=color:#66d9ef>while</span> <span style=color:#66d9ef>let</span> Some(e) <span style=color:#f92672>=</span> window.next() {
+        window.draw_2d(<span style=color:#f92672>&amp;</span>e, <span style=color:#f92672>|</span>_c, g<span style=color:#f92672>|</span> {
+            clear([<span style=color:#ae81ff>0.3</span>, <span style=color:#ae81ff>0.85</span>, <span style=color:#ae81ff>0.2</span>, <span style=color:#ae81ff>1.0</span>], g); <span style=color:#75715e>// A lovely green
+</span><span style=color:#75715e></span>        });
+    }
+}
+</code></pre></div><p>If you now run <code>cargo run</code> you should have a little window with a nice green in
+it. Success! Let&rsquo;s get to drawing a cube.</p><h2 id=getting-a-cube>Getting a cube</h2><p>So a cube is nothing more than 6 squares appropriately positioned. Keeping that
+in mind we can construct an Array of <em>Vertices</em> (sg. Vertex) in which to hold
+positioning information. However, we don&rsquo;t have a <code>Vertex</code> <em>struct</em>ure yet.
+Let&rsquo;s change that.</p><p>PistonWindow uses <a href=https://github.com/gfx-rs/gfx>gfx</a> to handle the whole
+drawing stuff. So we need to add that:</p><p>Exit your editor and run:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ cargo add gfx --vers<span style=color:#f92672>=</span>0.10
+</code></pre></div><p>We chose <code>0.10</code> because it is what PistonWindow depends on.</p><p>Let&rsquo;s also <code>cargo build</code> right away. You should notice that it did not build it
+again; due to PistonWindow we already had it built.</p><p>Time to add it to our <code>main.rs</code>:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ vim src/main.rs
+</code></pre></div><p><em>I want to note here that for the rest of this part I am using the
+<a href=https://github.com/PistonDevelopers/piston-examples/blob/master/src/cube.rs>piston-examples</a>
+repo as a reference. After all, no need to rewrite code that has already been
+written.</em></p><p>Same thing as earlier, but this time we also would like to have the macros they
+define! So we put <code>#[macro_use]</code> infront of the <code>extern</code>; like this:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#66d9ef>extern</span> <span style=color:#66d9ef>crate</span> camera_controllers; <span style=color:#75715e>// From earlier
+</span><span style=color:#75715e></span><span style=color:#75715e>#[macro_use]</span> <span style=color:#66d9ef>extern</span> <span style=color:#66d9ef>crate</span> gfx;
+</code></pre></div><p>Now we have access to two macros we will need:</p><ul><li><a href=http://docs.piston.rs/piston_window/gfx/macro.gfx_vertex_struct!.html><code>gfx_vertex_struct!</code></a>
+which will allow us define our Vertex.</li><li><a href=http://docs.piston.rs/piston_window/gfx/macro.gfx_pipeline!.html><code>gfx_pipeline!</code></a>
+which will allow us to create our render pipeline.</li></ul><p>Let&rsquo;s put them to use:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust>gfx_vertex_struct<span style=color:#f92672>!</span>( Vertex {
+    a_pos: [<span style=color:#66d9ef>i8</span>; <span style=color:#ae81ff>4</span>] <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;a_pos&#34;</span>,
+    a_tex_coord: [<span style=color:#66d9ef>i8</span>; <span style=color:#ae81ff>2</span>] <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;a_tex_coord&#34;</span>,
+});
+
+<span style=color:#66d9ef>impl</span> Vertex {
+    <span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>new</span>(pos: [<span style=color:#66d9ef>i8</span>; <span style=color:#ae81ff>3</span>], tc: [<span style=color:#66d9ef>i8</span>; <span style=color:#ae81ff>2</span>]) -&gt; <span style=color:#a6e22e>Vertex</span> {
+        Vertex {
+            a_pos: [pos[<span style=color:#ae81ff>0</span>], pos[<span style=color:#ae81ff>1</span>], pos[<span style=color:#ae81ff>2</span>], <span style=color:#ae81ff>1</span>],
+            a_tex_coord: <span style=color:#a6e22e>tc</span>,
+        }
+    }
+}
+
+gfx_pipeline<span style=color:#f92672>!</span>( pipe {
+    vbuf: <span style=color:#a6e22e>gfx</span>::VertexBuffer<span style=color:#f92672>&lt;</span>Vertex<span style=color:#f92672>&gt;</span> <span style=color:#f92672>=</span> (),
+    u_model_view_proj: <span style=color:#a6e22e>gfx</span>::Global<span style=color:#f92672>&lt;</span>[[<span style=color:#66d9ef>f32</span>; <span style=color:#ae81ff>4</span>]; <span style=color:#ae81ff>4</span>]<span style=color:#f92672>&gt;</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;u_model_view_proj&#34;</span>,
+    t_color: <span style=color:#a6e22e>gfx</span>::TextureSampler<span style=color:#f92672>&lt;</span>[<span style=color:#66d9ef>f32</span>; <span style=color:#ae81ff>4</span>]<span style=color:#f92672>&gt;</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;t_color&#34;</span>,
+    out_color: <span style=color:#a6e22e>gfx</span>::RenderTarget<span style=color:#f92672>&lt;</span>gfx::format::Srgba8<span style=color:#f92672>&gt;</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;o_color&#34;</span>,
+    out_depth: <span style=color:#a6e22e>gfx</span>::DepthTarget<span style=color:#f92672>&lt;</span>gfx::format::DepthStencil<span style=color:#f92672>&gt;</span> <span style=color:#f92672>=</span>
+        gfx::preset::depth::LESS_EQUAL_WRITE,
+});
+
+
+<span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>main</span>() { <span style=color:#75715e>// From earlier
+</span></code></pre></div><p>Check out <a href=https://gfx-rs.github.io/2016/01/22/pso.html>this blog post</a> to get
+an understanding of the Pipeline macro. There is also documentation in the code.</p><p>Now that we have a way to represent the cube, let&rsquo;s do just that and use the
+Vector from <code>piston-example</code>. It should be fairly straightforward to understand.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust>    <span style=color:#66d9ef>let</span> vertex_data <span style=color:#f92672>=</span> vec<span style=color:#f92672>!</span>[
+        <span style=color:#75715e>//top (0, 0, 1)
+</span><span style=color:#75715e></span>        Vertex::new([<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>]),
+        Vertex::new([ <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>]),
+        Vertex::new([ <span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>]),
+        Vertex::new([<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>]),
+        <span style=color:#75715e>//bottom (0, 0, -1)
+</span><span style=color:#75715e></span>        Vertex::new([ <span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>]),
+        Vertex::new([<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>]),
+        Vertex::new([<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>]),
+        Vertex::new([ <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>]),
+        <span style=color:#75715e>//right (1, 0, 0)
+</span><span style=color:#75715e></span>        Vertex::new([ <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>]),
+        Vertex::new([ <span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>]),
+        Vertex::new([ <span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>]),
+        Vertex::new([ <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>]),
+        <span style=color:#75715e>//left (-1, 0, 0)
+</span><span style=color:#75715e></span>        Vertex::new([<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>]),
+        Vertex::new([<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>]),
+        Vertex::new([<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>]),
+        Vertex::new([<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>]),
+        <span style=color:#75715e>//front (0, 1, 0)
+</span><span style=color:#75715e></span>        Vertex::new([<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>]),
+        Vertex::new([ <span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>]),
+        Vertex::new([ <span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>]),
+        Vertex::new([<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>]),
+        <span style=color:#75715e>//back (0, -1, 0)
+</span><span style=color:#75715e></span>        Vertex::new([ <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>]),
+        Vertex::new([<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>]),
+        Vertex::new([<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>]),
+        Vertex::new([ <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>], [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>]),
+    ];
+
+    <span style=color:#66d9ef>let</span> index_data: <span style=color:#66d9ef>&amp;</span>[<span style=color:#66d9ef>u8</span>] <span style=color:#f92672>=</span> <span style=color:#f92672>&amp;</span>[
+         <span style=color:#ae81ff>0</span>,  <span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>2</span>,  <span style=color:#ae81ff>2</span>,  <span style=color:#ae81ff>3</span>,  <span style=color:#ae81ff>0</span>, <span style=color:#75715e>// top
+</span><span style=color:#75715e></span>         <span style=color:#ae81ff>4</span>,  <span style=color:#ae81ff>6</span>,  <span style=color:#ae81ff>5</span>,  <span style=color:#ae81ff>6</span>,  <span style=color:#ae81ff>4</span>,  <span style=color:#ae81ff>7</span>, <span style=color:#75715e>// bottom
+</span><span style=color:#75715e></span>         <span style=color:#ae81ff>8</span>,  <span style=color:#ae81ff>9</span>, <span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>11</span>,  <span style=color:#ae81ff>8</span>, <span style=color:#75715e>// right
+</span><span style=color:#75715e></span>        <span style=color:#ae81ff>12</span>, <span style=color:#ae81ff>14</span>, <span style=color:#ae81ff>13</span>, <span style=color:#ae81ff>14</span>, <span style=color:#ae81ff>12</span>, <span style=color:#ae81ff>16</span>, <span style=color:#75715e>// left
+</span><span style=color:#75715e></span>        <span style=color:#ae81ff>16</span>, <span style=color:#ae81ff>18</span>, <span style=color:#ae81ff>17</span>, <span style=color:#ae81ff>18</span>, <span style=color:#ae81ff>16</span>, <span style=color:#ae81ff>19</span>, <span style=color:#75715e>// front
+</span><span style=color:#75715e></span>        <span style=color:#ae81ff>20</span>, <span style=color:#ae81ff>21</span>, <span style=color:#ae81ff>22</span>, <span style=color:#ae81ff>22</span>, <span style=color:#ae81ff>23</span>, <span style=color:#ae81ff>20</span>, <span style=color:#75715e>// back
+</span><span style=color:#75715e></span>    ];
+
+    <span style=color:#66d9ef>let</span> (vbuf, slice) <span style=color:#f92672>=</span> window.factory
+        .create_vertex_buffer_indexed(<span style=color:#f92672>&amp;</span>vertex_data, index_data);
+</code></pre></div><p>In the last line we then use our window (which has the OpenGl context) and
+create an indexed vertex buffer.</p><p>Let&rsquo;s try compiling it!</p><p>Oops, looks like we forgot to add the trait for it, let&rsquo;s add those.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#66d9ef>use</span> gfx::traits::<span style=color:#f92672>*</span>;
+</code></pre></div><p>Put that line just below our earlier <code>use</code> and it should compile with just two
+<code>unused variable</code> warnings. Let&rsquo;s go use them!</p><h2 id=texturing-a-cube>Texturing a Cube</h2><p>Now that we have an idea where the different points of our cube should look
+like, it&rsquo;s time to tell the game what they look like.</p><p>I&rsquo;ve decided to go with a simple image of stone for now.</p><p><img src=/public/rustcraft/stone.png alt=stone.png></p><p>Let&rsquo;s load it:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#66d9ef>let</span> stone <span style=color:#f92672>=</span> Texture::from_path(
+    <span style=color:#f92672>&amp;</span><span style=color:#66d9ef>mut</span> window.factory,
+    <span style=color:#f92672>&amp;</span>Path::new(<span style=color:#e6db74>&#34;assets/stone.png&#34;</span>),
+    Flip::None,
+    <span style=color:#f92672>&amp;</span>TextureSettings::new(),
+    );
+
+
+<span style=color:#66d9ef>let</span> sampler_info <span style=color:#f92672>=</span> gfx::tex::SamplerInfo::new(
+    gfx::tex::FilterMethod::Bilinear,
+    gfx::tex::WrapMode::Clamp
+    );
+
+<span style=color:#66d9ef>let</span> pso <span style=color:#f92672>=</span> window.factory.create_pipeline_simple(
+    Shaders::new().set(GLSL::V1_50,
+                       include_str<span style=color:#f92672>!</span>(<span style=color:#e6db74>&#34;../asset_src/cube_150.glslv&#34;</span>))
+                   .get(OpenGL::V3_2.to_glsl()).unwrap().as_bytes(),
+    Shaders::new().set(GLSL::V1_50,
+                       include_str<span style=color:#f92672>!</span>(<span style=color:#e6db74>&#34;../asset_src/cube_150.glslf&#34;</span>))
+                  .get(OpenGL::V3_2.to_glsl()).unwrap().as_bytes(),
+    gfx::state::CullFace::Nothing,
+    pipe::new()
+    ).unwrap();
+</code></pre></div><p><code>cube_150.glslv</code>:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-glsl data-lang=glsl><span style=color:#75715e>#version 150 core</span>
+<span style=color:#66d9ef>in</span> <span style=color:#66d9ef>ivec3</span> a_pos;
+<span style=color:#66d9ef>in</span> <span style=color:#66d9ef>ivec2</span> a_tex_coord;
+<span style=color:#66d9ef>out</span> <span style=color:#66d9ef>vec2</span> v_TexCoord;
+<span style=color:#66d9ef>uniform</span> mat4 u_model_view_proj;
+<span style=color:#66d9ef>void</span> main() {
+    v_TexCoord <span style=color:#f92672>=</span> a_tex_coord;
+    gl_Position <span style=color:#f92672>=</span> u_model_view_proj <span style=color:#f92672>*</span> <span style=color:#66d9ef>vec4</span>(a_pos, <span style=color:#ae81ff>1.0</span>);
+}
+</code></pre></div><p><code>cube_150.glslf</code>:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-glsl data-lang=glsl><span style=color:#75715e>#version 150 core</span>
+<span style=color:#66d9ef>in</span> <span style=color:#66d9ef>vec2</span> v_TexCoord;
+<span style=color:#66d9ef>out</span> <span style=color:#66d9ef>vec4</span> o_Color;
+<span style=color:#66d9ef>uniform</span> <span style=color:#66d9ef>sampler2D</span> t_color;
+<span style=color:#66d9ef>void</span> main() {
+    <span style=color:#66d9ef>vec4</span> tex <span style=color:#f92672>=</span> texture(t_color, v_TexCoord);
+    <span style=color:#66d9ef>float</span> blend <span style=color:#f92672>=</span> dot(v_TexCoord<span style=color:#f92672>-</span><span style=color:#66d9ef>vec2</span>(<span style=color:#ae81ff>0.5</span>,<span style=color:#ae81ff>0.5</span>),
+                      v_TexCoord<span style=color:#f92672>-</span><span style=color:#66d9ef>vec2</span>(<span style=color:#ae81ff>0.5</span>,<span style=color:#ae81ff>0.5</span>));
+    o_Color <span style=color:#f92672>=</span> mix(tex, <span style=color:#66d9ef>vec4</span>(<span style=color:#ae81ff>0.0</span>,<span style=color:#ae81ff>0.0</span>,<span style=color:#ae81ff>0.0</span>,<span style=color:#ae81ff>0.0</span>), blend<span style=color:#f92672>*</span><span style=color:#ae81ff>1.0</span>);
+}
+</code></pre></div><p>For those that don&rsquo;t know what shaders are. They are programmable pieces of
+software on your Graphics Card that tell it how to process the information you
+give it in. I do suggest though you check out another tutorial on how this works
+to get a better understanding. <a href=https://open.gl>Open.Gl</a> is a good resource.</p><p>Back to topic, we now have a <code>Texture</code> Object into which we have loaded our
+<code>stone.png</code> picture.</p><p>Then we create the final pipeline into which we give into our <em>V</em>ertex shader,
+as well as our <em>F</em>ragment shader.</p><p>The next step is projection! We might have points floating in virtual space and
+something to draw them onto, we still didn&rsquo;t tell the Graphics Card where we
+are. In Computer Graphic programming this is usually solved such that the
+&lsquo;Player&rsquo; Camera does not move, but instead the whole world! This allows you to
+ignore problems such as Floating Point Imprecision, since all will be centered
+around (0,0). (This is what I&rsquo;ve learned, if it&rsquo;s wrong please do tell me!)</p><p>Let&rsquo;s set up projection:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#66d9ef>let</span> get_projection <span style=color:#f92672>=</span> <span style=color:#f92672>|</span>w: <span style=color:#66d9ef>&amp;</span><span style=color:#a6e22e>PistonWindow</span><span style=color:#f92672>|</span> {
+    <span style=color:#66d9ef>let</span> draw_sie <span style=color:#f92672>=</span> w.window.draw_size();
+    CameraPerspective {
+        fov: <span style=color:#ae81ff>90.0</span>, near_clip: <span style=color:#ae81ff>0.1</span>, far_clip: <span style=color:#ae81ff>1000.0</span>,
+        aspect_ratio: <span style=color:#a6e22e>draw_size</span>.width <span style=color:#66d9ef>as</span> <span style=color:#66d9ef>f32</span> <span style=color:#f92672>/</span> draw_size.height <span style=color:#66d9ef>as</span> <span style=color:#66d9ef>f32</span>
+    }.projection()
+};
+
+<span style=color:#66d9ef>let</span> model_proj <span style=color:#f92672>=</span> vecmath::mat4_id();
+<span style=color:#66d9ef>let</span> <span style=color:#66d9ef>mut</span> projection <span style=color:#f92672>=</span> get_projection(<span style=color:#f92672>&amp;</span>window);
+
+<span style=color:#66d9ef>let</span> <span style=color:#66d9ef>mut</span> first_person <span style=color:#f92672>=</span> FirstPerson::new(
+    [<span style=color:#ae81ff>0.5</span>, <span style=color:#ae81ff>0.5</span>, <span style=color:#ae81ff>4.0</span>],
+    FirstPersonSettings::keyboard_wasd()
+);
+</code></pre></div><p>We make this a closure because later on we can check if the window changes size
+and re-calculate the projection.</p><p>Let&rsquo;s create a new pipeline data object for the PSO we&rsquo;ve defined earlier (in
+the macro)</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#66d9ef>let</span> <span style=color:#66d9ef>mut</span> data <span style=color:#f92672>=</span> pipe::Data {
+    vbuf: <span style=color:#a6e22e>vbuf</span>.clone(),
+    u_model_view_proj: [[<span style=color:#ae81ff>0.0</span>; <span style=color:#ae81ff>4</span>]; <span style=color:#ae81ff>4</span>],
+    t_color: (stone.view, window.factory.create_sampler(sampler_info)),
+    out_color: <span style=color:#a6e22e>window</span>.output_color.clone(),
+    out_depth: <span style=color:#a6e22e>window</span>.output_stencil.clone(),
+    };
+
+</code></pre></div><p>And data wise we&rsquo;re done! All that is left is actually drawing and giving the
+<code>first_person</code> object the input.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#66d9ef>while</span> <span style=color:#66d9ef>let</span> Some(e) <span style=color:#f92672>=</span> window.next() {
+    first_person.event(<span style=color:#f92672>&amp;</span>e);
+
+    <span style=color:#66d9ef>if</span> <span style=color:#66d9ef>let</span> Some(_) <span style=color:#f92672>=</span> e.render_args() {
+        <span style=color:#66d9ef>let</span> args <span style=color:#f92672>=</span> e.render_args().unwrap();
+        <span style=color:#75715e>// We can unwrap as this closure only gets called
+</span><span style=color:#75715e></span>        <span style=color:#75715e>// in the render loop
+</span><span style=color:#75715e></span>        window.encoder.clear(<span style=color:#f92672>&amp;</span>window.output_color,
+                             [<span style=color:#ae81ff>0.3</span>, <span style=color:#ae81ff>0.3</span>, <span style=color:#ae81ff>0.3</span>, <span style=color:#ae81ff>1.0</span>]);
+        window.encoder.clear_depth(<span style=color:#f92672>&amp;</span>window.output_stencil, <span style=color:#ae81ff>1.0</span>);
+
+        data.u_model_view_proj <span style=color:#f92672>=</span> model_view_projection(
+            model_proj,
+            first_person.camera(args.ext_dt).orthogonal(),
+            projection
+        );
+        window.encoder.draw(<span style=color:#f92672>&amp;</span>slice, <span style=color:#f92672>&amp;</span>pso, <span style=color:#f92672>&amp;</span>data);
+        window.encoder.flush(<span style=color:#f92672>&amp;</span><span style=color:#66d9ef>mut</span> window.device);
+    };
+
+    <span style=color:#66d9ef>if</span> <span style=color:#66d9ef>let</span> Some(_) <span style=color:#f92672>=</span> e.resize_args() {
+        projection <span style=color:#f92672>=</span> get_projection(<span style=color:#f92672>&amp;</span>window);
+    }
+}
+</code></pre></div><p>This code has a temporary <em>hack</em> due to a bug in the interface in
+<code>piston_window</code>. Once <a href=https://github.com/PistonDevelopers/piston_window/issues/136#issuecomment-212360248>this
+issue</a>
+is solved I will change this part to the correct way. (Or just fix it in the
+next part of this series.)</p><p>Let&rsquo;s run the code and see our result!</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>cargo run
+</code></pre></div><p>This is what I get on my screen:</p><p><img src=https://i.imgur.com/phS5nIq.png?1 alt="Rustcraft first picture"></p><p>And with this we conclude the first part, in the next post we will explore how
+to abstract away the cube so we could have multiple &lsquo;textures&rsquo; for example.</p><p>Another thing I want to do is to be able to interact with the cubes.</p><p>The source code can be found <a href=https://github.com/TheNeikos/rustcraft/tree/v0.1>here</a></p><p>See ya next time!</p></div></main><footer><p class="copyright text-muted">© All rights reserved. Powered by <a href=https://gohugo.io>Hugo</a> and <a href=https://github.com/calintat/minimal>Minimal</a></p></footer></body></html>

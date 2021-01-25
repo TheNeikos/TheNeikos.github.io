@@ -1,0 +1,35 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Going into Resources (Games #2)</title><style>html body{font-family:raleway,sans-serif;background-color:#fff}:root{--accent: green;--border-width:  5px }</style><link rel=stylesheet href=/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Raleway"><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-dark.min.css><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css integrity=sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN crossorigin=anonymous><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js></script><script>hljs.initHighlightingOnLoad();</script><script src=https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js></script><script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script><script>$(document).on('click',function(){$('.collapse').collapse('hide');})</script><script type=text/javascript>var _paq=_paq||[];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function(){_paq.push(['setTrackerUrl','https://api-1ae8886f4428fee007ebf3e570e5c1e3.hemera.sandcats.io']);_paq.push(['setSiteId',1]);_paq.push(['setApiToken','f33SDEYp33zx4vFBTZdm13NtTK9Ksd93EDx2kT1e982']);var d=document,g=d.createElement('script'),s=d.getElementsByTagName('script')[0];g.type='text/javascript';g.async=true;g.defer=true;g.src='https://md6h0twa65rihzm46p0e.hemera.sandcats.io/embed.js';s.parentNode.insertBefore(g,s);})();</script><meta name=generator content="Hugo 0.80.0"></head><body><nav class="navbar navbar-default navbar-fixed-top"><div class=container><div class=navbar-header><a class="navbar-brand visible-xs" href=#>Going into Resources (Games #2)</a>
+<button class=navbar-toggle data-target=.navbar-collapse data-toggle=collapse>
+<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button></div><div class="collapse navbar-collapse"><ul class="nav navbar-nav"><li><a href=/>Home</a></li><li><a href=/post/>Posts</a></li><li><a href=/project/>Projects</a></li></ul><ul class="nav navbar-nav navbar-right"><li class=navbar-icon><a href=mailto:neikos@neikos.email><i class="fa fa-envelope-o"></i></a></li><li class=navbar-icon><a href=https://github.com/TheNeikos/><i class="fa fa-github"></i></a></li><li class=navbar-icon><a href=https://stackoverflow.com/users/783825/neikos><i class="fa fa-stack-overflow"></i></a></li><li class=navbar-icon><a href=https://telegram.me/TheNeikos><i class="fa fa-telegram"></i></a></li></ul></div></div></nav><main><div class=item><h4><a href=/Going_into_Resources_%28Games_-2%29.html>Going into Resources (Games #2)</a></h4><h5>October 16, 2014</h5></div><br><div class=text-justify><p>I have talked with a friend of mine (who is rather knowleadgable) about an
+implementation of a resource system in my game. He offered me interesting
+insight into two ways of calculating and keeping resources up to date.</p><h2 id=absolute>Absolute</h2><p>This was what I thought I would end up implementing. In pseudocode this could
+look like this:</p><pre><code>    for each building
+        for each resource of the building
+            add/remove resource of given type
+        end
+    end
+</code></pre><p>This means that for each update a transaction is created that calculates the
+current demand and output and works through it. This has several limitations,
+it doesn&rsquo;t scale well. Imagine dozens of buildings in hundreds of villages.
+That is a lot to calculate <em>every second</em> (the time of one turn). This is when
+he suggested the alternative.</p><h2 id=streaming>Streaming</h2><p>The pseudocode for this could look like this:</p><p>On adding/removing a building</p><pre><code>    resource table
+    for each building
+        for each resource of the building
+            add/remove resource and insert into resource table
+        end
+    end
+    save resource table
+</code></pre><p>Then, each update loop do this:</p><pre><code>    add resource table to current resources
+</code></pre><p>This means that it is a really fast operation as everything has been calculated
+in advance. It also means that you can have non instant construction, and for
+example build for 1 minute a large house. Then pause and finish building
+something else and then go back to the house. As this means that you only have
+to do time consuming calculations if things change (rather than every second)
+you are saving on time and thus have lesser problems scaling.</p><h2 id=resources>Resources</h2><p>These are the units that make the game work. Some have a limited supply, others
+are plentiful but sometimes hard to acquire.</p><h3 id=wood>Wood</h3><p>Wood is the most basic element. It&rsquo;s used pretty much everywhere. It burns hot
+and is pretty sturdy. So it is used in refining resources, and buildings. Wood
+is gotten from the local forests.</p><h3 id=stone>Stone</h3><p>Stone is also one of the basic element. Mainly used for buildings, you need it
+for larger buildings as stone foundations are a must in that regard.</p><h3 id=iron>Iron</h3><p>Iron is the first of the lesser metals to be thorougly understood. Once you can
+forge it a whole new series of advancements open up to you.</p><h3 id=copper>Copper</h3><p>Copper is also one of the lesser metals. It is not yet well understood, however
+magical uses have been reported throughout the world. Spending effort on
+researching this might be worth it.</p></div></main><footer><p class="copyright text-muted">© All rights reserved. Powered by <a href=https://gohugo.io>Hugo</a> and <a href=https://github.com/calintat/minimal>Minimal</a></p></footer></body></html>

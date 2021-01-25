@@ -1,0 +1,255 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Using Rust for Webdev as a Hobby Programmer</title><style>html body{font-family:raleway,sans-serif;background-color:#fff}:root{--accent: green;--border-width:  5px }</style><link rel=stylesheet href=/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Raleway"><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-dark.min.css><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css integrity=sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN crossorigin=anonymous><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js></script><script>hljs.initHighlightingOnLoad();</script><script src=https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js></script><script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script><script>$(document).on('click',function(){$('.collapse').collapse('hide');})</script><script type=text/javascript>var _paq=_paq||[];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function(){_paq.push(['setTrackerUrl','https://api-1ae8886f4428fee007ebf3e570e5c1e3.hemera.sandcats.io']);_paq.push(['setSiteId',1]);_paq.push(['setApiToken','f33SDEYp33zx4vFBTZdm13NtTK9Ksd93EDx2kT1e982']);var d=document,g=d.createElement('script'),s=d.getElementsByTagName('script')[0];g.type='text/javascript';g.async=true;g.defer=true;g.src='https://md6h0twa65rihzm46p0e.hemera.sandcats.io/embed.js';s.parentNode.insertBefore(g,s);})();</script><meta name=generator content="Hugo 0.80.0"></head><body><nav class="navbar navbar-default navbar-fixed-top"><div class=container><div class=navbar-header><a class="navbar-brand visible-xs" href=#>Using Rust for Webdev as a Hobby Programmer</a>
+<button class=navbar-toggle data-target=.navbar-collapse data-toggle=collapse>
+<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button></div><div class="collapse navbar-collapse"><ul class="nav navbar-nav"><li><a href=/>Home</a></li><li><a href=/post/>Posts</a></li><li><a href=/project/>Projects</a></li></ul><ul class="nav navbar-nav navbar-right"><li class=navbar-icon><a href=mailto:neikos@neikos.email><i class="fa fa-envelope-o"></i></a></li><li class=navbar-icon><a href=https://github.com/TheNeikos/><i class="fa fa-github"></i></a></li><li class=navbar-icon><a href=https://stackoverflow.com/users/783825/neikos><i class="fa fa-stack-overflow"></i></a></li><li class=navbar-icon><a href=https://telegram.me/TheNeikos><i class="fa fa-telegram"></i></a></li></ul></div></div></nav><main><div class=item><h4><a href=/Using_Rust_for_Webdev_as_a_Hobby_Programmer.html>Using Rust for Webdev as a Hobby Programmer</a></h4><h5>October 8, 2016</h5></div><br><div class=text-justify><p>I&rsquo;ve been a huge fan of Rust ever since I started using it (which was right
+before 1.0 as I didn&rsquo;t like updating my code all the time to the latest syntax).
+At first I created a few silly applications, some games, tried my hand at
+libraries; but in the end I was still drawn back into Web Development.
+You have to know that I grew up with PHP and then Ruby for Web Development, so I
+went from CakePHP to Ruby on Rails, which was amazing! RoR had so many features
+out of the box that I used, it just worked at first.
+But then came the pitfalls of dynamic frameworks: indirection over indirection
+over indirection. Which I believe is a case of &ldquo;If you make it possible, people
+will use it.&rdquo;
+This indirection is what causes the hours upon hours of debugging spent on why
+when removing a part from A it breaks B.</p><p>Enter <a href=https://rust-lang.org>Rust</a>. I have personally found few caveats that I disagree with that
+are not simply design choices (based on taste rather than engineering) or were
+my fault all along. A few others have talked about their experiences, so if you
+want a more nuanced approach you could check those out, the <a href=https://rust.reddit.com>/r/rust</a>
+subreddit is also an excellent place to look for. (Some I&rsquo;ve read: <a href=https://www.jimmycuadra.com/posts/the-highs-and-lows-of-rust/>here</a>,
+<a href=http://beyermatthias.de/blog/2016/01/31/the-annoyance-of-programming-language-tutorials-or-why-learning-rust-feels-amazing/>here</a>, or <a href=https://medium.com/@robertgrosse/my-experience-rewriting-enjarify-in-rust-723089b406ad>here</a>). While they do adress a few shortcomings it is overall
+possible to work with it. (And most problems seem not intrinsic to the language,
+but due to immaturity or ignorance of existing features/solutions).</p><p>A few months back I found the page <a href=http://arewewebyet.org>arewewebyet.org</a> and wanted to see how
+fun Rust would be to use. I will outline the different things I&rsquo;ve learned and
+encountered here. If you think I could have gone into more detail or might have
+missed out on something please do tell me! (I can be reached on Reddit as
+TheNeikos or by mail at &ldquo;neikos at neikos.email&rdquo;)</p><h2 id=rust-and-the-libraries>Rust and the libraries</h2><p>Due to the libraries and plugins I planned to use I had to switch to the nightly
+branch of Rust. This can be a deal breaker to some, however I had no troubles so
+far since the only thing unstable I use are <code>plugin</code>, <code>custom_derive</code>,
+<code>custom_attribute</code> and <code>question_mark</code>. It might be that some of the crates use
+more experimental features, however they are well-tested from what I saw.</p><p>So, after having run <code>cargo init</code> I needed a few things that I was promised that
+are covered:</p><ul><li>Web Framework</li><li>ORM</li><li>Crypto</li><li>Logging</li><li>Templating</li></ul><p>What I wanted to write is a website to host an art community on. So I would also
+need an image handling library.</p><p>My choices so far are (with version numbers):</p><ul><li><a href=http://ironframework.io/><code>iron</code></a> (v0.4) &ndash; I like the middleware approach, I&rsquo;m slowly getting to it&rsquo;s
+pitfalls (regarding code duplication and resource loading) but I have ideas to
+solve those and thus still recommend using it</li><li><a href=http://diesel.rs/><code>diesel</code></a> (v0.7) &ndash; A good looking (API-wise) library, while slightly
+verbose at times, it works really well.</li><li><a href=https://github.com/Keats/rust-bcrypt><code>bcrypt</code></a> (v0.1) &ndash; I only need it for password hashing, so this is a weakly
+held choice in term of library. It works and it does what it says on the tin.</li><li><a href=https://github.com/rust-lang-nursery/log><code>log</code></a> (v0.3) + <a href=https://github.com/sfackler/log4rs><code>log4rs</code></a> (v0.4) &ndash; I had some log4j at University and didn&rsquo;t
+like it (might be the Java though&mldr; brr) but log4rs seems to fit better into
+my paradigms and it works.</li><li><a href=https://github.com/lfairy/maud><code>maud</code></a> (v0.11) &ndash; My favorite find in terms of libraries. It allows you to
+write a Rust Macro that spits out HTML! It&rsquo;s a first taste of what plugins
+will allow you to do and I love it.</li><li><a href=https://github.com/PistonDevelopers/image><code>image</code></a> (v0.10) &ndash; An image library built for games, but it also works for
+webdev in this case: simple image manipulation.</li></ul><p>A lot of these choices are subjective at the end due to the fact that there are
+many different choices and that none have differentiated themselves yet. So feel
+free to use something else! I can say for the aformentioned Libraries though
+that they do work together.</p><h2 id=middleware-and-iron>Middleware and Iron</h2><p>Iron uses Handlers to respond to a given request, the way it is built allows for
+quite a flexible array of patterns to be used. For example the one I use is a
+mix of <code>Router</code> and <code>Chain</code>. <code>Router</code> allows me to specify (in text) a mapping
+from paths to another Handler. <code>Chain</code> then allows me to run through a <em>chain</em>
+of <code>BeforeMiddleware</code> to <code>AroundMiddleware</code> or <code>AfterMiddleware</code> with my handler
+in the middle. A few examples:</p><p><em>Note that this code is just to get an idea of what is possible, it might not
+compile due to missing implementations that would be too long/verbose to add!</em></p><p><strong>Hello World in Iron</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#66d9ef>use</span> iron::{Iron, Request, Response, IronResult};
+
+<span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>handler</span>(_: <span style=color:#66d9ef>&amp;</span><span style=color:#a6e22e>mut</span> Request) -&gt; <span style=color:#a6e22e>IronResult</span><span style=color:#f92672>&lt;</span>Response<span style=color:#f92672>&gt;</span> {
+    Ok(Response::with(<span style=color:#e6db74>&#34;Hello World&#34;</span>))
+}
+
+<span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>main</span>() {
+    <span style=color:#66d9ef>let</span> server <span style=color:#f92672>=</span> Iron::new(handler);
+    <span style=color:#66d9ef>match</span> server.http(<span style=color:#e6db74>&#34;0.0.0.0:3000&#34;</span>) {
+        Ok(()) <span style=color:#f92672>=&gt;</span> { <span style=color:#75715e>/*Listening blocks the thread */</span> }
+        Err(e) <span style=color:#f92672>=&gt;</span> {
+            println<span style=color:#f92672>!</span>(<span style=color:#e6db74>&#34;Could not create Iron Server: {}&#34;</span>, e);
+        }
+    }
+}
+</code></pre></div><p><strong>Basic Router</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#66d9ef>extern</span> <span style=color:#66d9ef>crate</span> iron;
+<span style=color:#66d9ef>extern</span> <span style=color:#66d9ef>crate</span> router;
+
+<span style=color:#66d9ef>use</span> iron::{Iron, Request, Response, IronResult};
+<span style=color:#66d9ef>use</span> router::Router;
+
+<span style=color:#66d9ef>mod</span> handlers {
+    <span style=color:#66d9ef>use</span> iron::{Request, Response, IronResult};
+    <span style=color:#66d9ef>use</span> router::Params;
+
+    <span style=color:#66d9ef>pub</span> <span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>world</span>(_: <span style=color:#66d9ef>&amp;</span><span style=color:#a6e22e>mut</span> Request) -&gt; <span style=color:#a6e22e>IronResult</span><span style=color:#f92672>&lt;</span>Response<span style=color:#f92672>&gt;</span> {
+        Ok(Response::with(<span style=color:#e6db74>&#34;Hello World&#34;</span>))
+    }
+
+    <span style=color:#66d9ef>pub</span> <span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>answer</span>(_: <span style=color:#66d9ef>&amp;</span><span style=color:#a6e22e>mut</span> Request) -&gt; <span style=color:#a6e22e>IronResult</span><span style=color:#f92672>&lt;</span>Response<span style=color:#f92672>&gt;</span> {
+        <span style=color:#66d9ef>use</span> params::{Params, Value};
+        <span style=color:#66d9ef>let</span> map <span style=color:#f92672>=</span> req.get_ref::<span style=color:#f92672>&lt;</span>Params<span style=color:#f92672>&gt;</span>().unwrap();
+
+        <span style=color:#66d9ef>let</span> name;
+        <span style=color:#66d9ef>if</span> <span style=color:#66d9ef>let</span> Some(<span style=color:#f92672>&amp;</span>Value::String(<span style=color:#66d9ef>ref</span> nam)) <span style=color:#f92672>=</span> map.find(<span style=color:#e6db74>&#34;name&#34;</span>) {
+            name <span style=color:#f92672>=</span> nam;
+        } <span style=color:#66d9ef>else</span> {
+            name <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Anonymous&#34;</span>;
+        }
+
+        Ok(Response::with(format<span style=color:#f92672>!</span>(<span style=color:#e6db74>&#34;Hello {}&#34;</span>, name)))
+    }
+}
+
+<span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>main</span>() {
+    <span style=color:#66d9ef>let</span> <span style=color:#66d9ef>mut</span> router <span style=color:#f92672>=</span> Router::new();
+    router.get(<span style=color:#e6db74>&#34;/&#34;</span>, handlers::world, <span style=color:#e6db74>&#34;index&#34;</span>);
+    router.get(<span style=color:#e6db74>&#34;/hello/:name&#34;</span>, handlers::answer, <span style=color:#e6db74>&#34;answer&#34;</span>);
+
+    <span style=color:#66d9ef>let</span> server <span style=color:#f92672>=</span> Iron::new(router);
+    <span style=color:#66d9ef>match</span> server.http(<span style=color:#e6db74>&#34;0.0.0.0:3000&#34;</span>) {
+        Ok(()) <span style=color:#f92672>=&gt;</span> { <span style=color:#75715e>/*Listening blocks the thread */</span> }
+        Err(e) <span style=color:#f92672>=&gt;</span> {
+            println<span style=color:#f92672>!</span>(<span style=color:#e6db74>&#34;Could not create Iron Server: {}&#34;</span>, e);
+        }
+    }
+}
+</code></pre></div><p><strong>More Advanced Routing with Middleware and Mount</strong></p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#66d9ef>extern</span> <span style=color:#66d9ef>crate</span> iron;
+<span style=color:#66d9ef>extern</span> <span style=color:#66d9ef>crate</span> router;
+<span style=color:#66d9ef>extern</span> <span style=color:#66d9ef>crate</span> mount;
+
+<span style=color:#66d9ef>use</span> iron::{Iron, Request, Response, IronResult, Chain};
+<span style=color:#66d9ef>use</span> router::Router;
+<span style=color:#66d9ef>use</span> mount::Mount;
+
+<span style=color:#66d9ef>mod</span> controllers;
+
+<span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>main</span>() {
+    <span style=color:#66d9ef>let</span> user_router <span style=color:#f92672>=</span> router<span style=color:#f92672>!</span> {
+        user_index: <span style=color:#a6e22e>get</span> <span style=color:#e6db74>&#34;/&#34;</span> <span style=color:#f92672>=&gt;</span> controllers::user::index,
+        user_view: <span style=color:#a6e22e>get</span> <span style=color:#e6db74>&#34;/:id&#34;</span> <span style=color:#f92672>=&gt;</span> controllers::user::view,
+        user_create: <span style=color:#a6e22e>post</span> <span style=color:#e6db74>&#34;/&#34;</span> <span style=color:#f92672>=&gt;</span> controllers::user::create,
+        user_update: <span style=color:#a6e22e>post</span> <span style=color:#e6db74>&#34;/:id&#34;</span> <span style=color:#f92672>=&gt;</span> {
+            <span style=color:#66d9ef>let</span> <span style=color:#66d9ef>mut</span> chain <span style=color:#f92672>=</span> Chain::new(controllers::user::update);
+            chain.link_before(Authorizer::new(
+                IsOwnerOf::<span style=color:#f92672>&lt;</span>User<span style=color:#f92672>&gt;</span>::new()
+            ));
+            chain
+        },
+    };
+
+    <span style=color:#66d9ef>let</span> <span style=color:#66d9ef>mut</span> mount <span style=color:#f92672>=</span> Mount::new();
+    mount.mount(<span style=color:#e6db74>&#34;/user&#34;</span>, user_router);
+
+    <span style=color:#66d9ef>let</span> server <span style=color:#f92672>=</span> Iron::new(mount);
+    <span style=color:#66d9ef>match</span> server.http(<span style=color:#e6db74>&#34;0.0.0.0:3000&#34;</span>) {
+        Ok(()) <span style=color:#f92672>=&gt;</span> { <span style=color:#75715e>/*Listening blocks the thread */</span> }
+        Err(e) <span style=color:#f92672>=&gt;</span> {
+            println<span style=color:#f92672>!</span>(<span style=color:#e6db74>&#34;Could not create Iron Server: {}&#34;</span>, e);
+        }
+    }
+}
+</code></pre></div><p>For an example of how I am currently using this you can check out my
+<a href=https://github.com/TheNeikos/furratoria.space/blob/master/src/main.rs#L55>routing</a> as well as my <a href=https://github.com/TheNeikos/furratoria.space/blob/master/src/middleware/authorization/is_owner.rs#L23>authorization implementation</a>.</p><p>All in all I find that other than the verbosity of using <code>router::Param</code> it is
+quite enjoyable and flexible to use.</p><h2 id=the-orm-diesel-with-r2d2>The ORM, Diesel (with r2d2)</h2><p>Diesel is a quite ergonomic compiler plugin that allows one to specify Rust
+structs for given database tables. I&rsquo;ve only used it in conjunction with
+Postgres so I cannot say anything about other backends.</p><h3 id=the-basic-premise>The Basic Premise</h3><p>There are a few steps to get Diesel up and running to be able to use it nicely:</p><ul><li>Create a module that calls <code>infer_schema!(&lt;DATABASE_URL>)</code> to generate Rust
+code for your database</li><li>Create a Struct to be used as a representation of a given table (examples
+below)</li><li>Use <code>rd2d</code> and <code>r2d2_diesel</code> to create a connection pool to your Database</li><li>Start using it</li></ul><p>It is actually really simple to use once one gets beyond the setup phase (which
+at the time I was starting out was not clear at all).</p><p>The way I use it is to create a <code>lazy_static</code> connection pool one can clone:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#66d9ef>use</span> std::env;
+
+<span style=color:#66d9ef>use</span> diesel::pg::PgConnection;
+<span style=color:#66d9ef>use</span> r2d2_diesel::ConnectionManager;
+<span style=color:#66d9ef>use</span> r2d2;
+
+lazy_static<span style=color:#f92672>!</span> {
+    <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>ref</span> CONNECTION: <span style=color:#a6e22e>r2d2</span>::Pool<span style=color:#f92672>&lt;</span>ConnectionManager<span style=color:#f92672>&lt;</span>PgConnection<span style=color:#f92672>&gt;&gt;</span> <span style=color:#f92672>=</span> {
+        <span style=color:#66d9ef>let</span> database_url <span style=color:#f92672>=</span> env::var(<span style=color:#e6db74>&#34;DATABASE_URL&#34;</span>)
+            .expect(<span style=color:#e6db74>&#34;DATABASE_URL must be set&#34;</span>);
+        <span style=color:#66d9ef>let</span> config <span style=color:#f92672>=</span> r2d2::Config::default();
+        <span style=color:#66d9ef>let</span> manager <span style=color:#f92672>=</span> ConnectionManager::<span style=color:#f92672>&lt;</span>PgConnection<span style=color:#f92672>&gt;</span>::new(database_url);
+        r2d2::Pool::new(config, manager).expect(<span style=color:#e6db74>&#34;Failed to create pool&#34;</span>)
+    };
+}
+
+<span style=color:#66d9ef>pub</span> <span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>connection</span>() -&gt; <span style=color:#a6e22e>r2d2</span>::Pool<span style=color:#f92672>&lt;</span>ConnectionManager<span style=color:#f92672>&lt;</span>PgConnection<span style=color:#f92672>&gt;&gt;</span> {
+    CONNECTION.clone()
+}
+</code></pre></div><p>then in another module I infer the schema:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust>infer_schema<span style=color:#f92672>!</span>(dotenv<span style=color:#f92672>!</span>(<span style=color:#e6db74>&#34;DATABASE_URL&#34;</span>));
+</code></pre></div><p>Then, I define the actual model:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#75715e>#[derive(Queryable, Identifiable, Debug)]</span>
+<span style=color:#66d9ef>pub</span> <span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>User</span> {
+    <span style=color:#66d9ef>pub</span> id: <span style=color:#66d9ef>i64</span>,
+    <span style=color:#66d9ef>pub</span> email: String,
+    <span style=color:#66d9ef>pub</span> password_hash: String,
+    <span style=color:#66d9ef>pub</span> name: String,
+    <span style=color:#66d9ef>pub</span> created_at: <span style=color:#a6e22e>diesel</span>::data_types::PgTimestamp,
+    <span style=color:#66d9ef>pub</span> updated_at: <span style=color:#a6e22e>diesel</span>::data_types::PgTimestamp,
+    profile_image: Option<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>i64</span><span style=color:#f92672>&gt;</span>
+}
+</code></pre></div><p>It is important that the fields are in the same order as you have defined them
+in your Database. This is an implementation problem that might be fixed in the
+Future so I&rsquo;ve read, If you do not it will not compile.</p><p>Then, you can start using it:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#66d9ef>pub</span> <span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>find</span>(uid: <span style=color:#66d9ef>i64</span>) -&gt; Result<span style=color:#f92672>&lt;</span>Option<span style=color:#f92672>&lt;</span>User<span style=color:#f92672>&gt;</span>, error::Error<span style=color:#f92672>&gt;</span> {
+    <span style=color:#66d9ef>use</span> diesel::prelude::<span style=color:#f92672>*</span>;
+    <span style=color:#66d9ef>use</span> models::schema::users::dsl::<span style=color:#f92672>*</span>; <span style=color:#75715e>// This import allows you to use the
+</span><span style=color:#75715e></span>                                       <span style=color:#75715e>// table names as a dsl
+</span><span style=color:#75715e></span>                                       <span style=color:#75715e>// It has the same name as your DB table
+</span><span style=color:#75715e></span>
+    users.limit(<span style=color:#ae81ff>1</span>).filter(id.eq(uid))
+         .get_result::<span style=color:#f92672>&lt;</span>models::user::User<span style=color:#f92672>&gt;</span>(<span style=color:#f92672>&amp;*</span>database::connection().get().unwrap())
+         .optional()
+}
+</code></pre></div><p><em>Note: The <code>error::Error</code> type here is a custom one</em></p><p>What I find nice is that you need to create a second struct to be able to
+insert:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#75715e>#[insertable_into(users)]</span>
+<span style=color:#66d9ef>pub</span> <span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>NewUser</span><span style=color:#f92672>&lt;</span><span style=color:#a6e22e>&#39;a</span><span style=color:#f92672>&gt;</span> {
+    <span style=color:#66d9ef>pub</span> email: <span style=color:#66d9ef>&amp;</span><span style=color:#a6e22e>&#39;a</span> <span style=color:#66d9ef>str</span>,
+    <span style=color:#66d9ef>pub</span> password_hash: String,
+    <span style=color:#66d9ef>pub</span> name: <span style=color:#66d9ef>&amp;</span><span style=color:#a6e22e>&#39;a</span> <span style=color:#66d9ef>str</span>,
+}
+</code></pre></div><p>And then:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#66d9ef>pub</span> <span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>create_from</span>(nu: <span style=color:#a6e22e>NewUser</span>) -&gt; Result<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>i64</span>, error::FurratoriaError<span style=color:#f92672>&gt;</span> {
+    <span style=color:#66d9ef>use</span> diesel;
+    <span style=color:#66d9ef>use</span> diesel::prelude::<span style=color:#f92672>*</span>;
+    <span style=color:#66d9ef>use</span> models::schema::users::dsl::<span style=color:#f92672>*</span>;
+    <span style=color:#66d9ef>let</span> user_id <span style=color:#f92672>=</span> <span style=color:#66d9ef>try</span><span style=color:#f92672>!</span>(diesel::insert(<span style=color:#f92672>&amp;</span>nu)
+                                .into(users)
+                                .returning(id)
+                                .get_result(<span style=color:#f92672>&amp;*</span>database::connection().get().unwrap())
+                                );
+    Ok(user_id)
+}
+</code></pre></div><p>For a complete overview of how one could handle users you can check out how I
+<a href=https://github.com/TheNeikos/furratoria.space/blob/master/src/models/user.rs>do it</a>.</p><h2 id=using-maud-for-templates>Using Maud for Templates</h2><p>In the end I wanted to output HTML, since <code>format!</code>ing everything seemed like a
+bad idea. In the end I went with Maud since I liked the idea of working with a
+plugin.</p><p>It is also quite intuitive to work with:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#66d9ef>let</span> name <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Noone&#34;</span>;
+<span style=color:#66d9ef>let</span> output <span style=color:#f92672>=</span> html<span style=color:#f92672>!</span> {
+    div.hello <span style=color:#e6db74>&#34;World!&#34;</span>
+    p {
+        strong { <span style=color:#e6db74>&#34;Hello &#34;</span> (name) }
+    }
+};
+</code></pre></div><p>It returns a <code>RenderOnce&lt;String></code> which means it is easy to use and reason with.
+The thing I found really fancy is that you can nest those calls! Allowing to me
+to do something like that:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust>html<span style=color:#f92672>!</span> {
+    div.row (PreEscaped(Column::new(html<span style=color:#f92672>!</span> {
+        h1 <span style=color:#e6db74>&#34;Hello there!&#34;</span>
+
+        p {
+            <span style=color:#e6db74>&#34;Heya there&#34;</span>
+        }
+    })))
+};
+</code></pre></div><p>Which then in turn allows me transform or wrap the code!</p><p>Another neat thing is to build forms:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust>html<span style=color:#f92672>!</span> {
+   (PreEscaped(Form::new(FormMethod::Post, <span style=color:#f92672>&amp;</span>format<span style=color:#f92672>!</span>(<span style=color:#e6db74>&#34;/submissions/{}&#34;</span>, sub.id))
+      .with_encoding(<span style=color:#e6db74>&#34;multipart/form-data&#34;</span>)
+      .with_fields(<span style=color:#f92672>&amp;</span>[
+           <span style=color:#f92672>&amp;</span>Input::new(<span style=color:#e6db74>&#34;Image&#34;</span>, <span style=color:#e6db74>&#34;sub_image&#34;</span>)
+                .with_type(<span style=color:#e6db74>&#34;file&#34;</span>)
+                .with_errors(errors.as_ref().map(<span style=color:#f92672>|</span>x<span style=color:#f92672>|</span> <span style=color:#f92672>&amp;</span>x.image)),
+           <span style=color:#f92672>&amp;</span>Input::new(<span style=color:#e6db74>&#34;Title&#34;</span>, <span style=color:#e6db74>&#34;sub_name&#34;</span>)
+                .with_value(<span style=color:#f92672>&amp;</span>sub.title[..])
+                .with_errors(errors.as_ref().map(<span style=color:#f92672>|</span>x<span style=color:#f92672>|</span> <span style=color:#f92672>&amp;</span>x.title)),
+           <span style=color:#f92672>&amp;</span>Textarea::new(<span style=color:#e6db74>&#34;Description&#34;</span>, <span style=color:#e6db74>&#34;sub_desc&#34;</span>)
+                .with_value(<span style=color:#f92672>&amp;</span>sub.description)
+                .with_errors(None),
+           <span style=color:#f92672>&amp;</span>Select::new(<span style=color:#e6db74>&#34;Visibility&#34;</span>, <span style=color:#e6db74>&#34;sub_visibility&#34;</span>)
+                .add_option(<span style=color:#e6db74>&#34;Public&#34;</span>,<span style=color:#e6db74>&#34;0&#34;</span>)
+                .add_option(<span style=color:#e6db74>&#34;Private&#34;</span>, <span style=color:#e6db74>&#34;2&#34;</span>)
+                .with_selected(sub.get_visibility().as_str()),
+           <span style=color:#f92672>&amp;</span>Input::new(<span style=color:#e6db74>&#34;&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>)
+                .with_value(<span style=color:#e6db74>&#34;Update&#34;</span>)
+                .with_type(<span style=color:#e6db74>&#34;submit&#34;</span>)
+                .with_class(<span style=color:#e6db74>&#34;btn btn-primary&#34;</span>)
+      ])))
+}
+</code></pre></div><p>Although <code>Form</code> and <code>Column</code> are my own types I <a href=https://github.com/TheNeikos/furratoria.space/tree/master/src/views/components>built</a>.</p><h1 id=conclusion>Conclusion</h1><p>All in all I think that it is quite possible to write Web Applications nicely.
+While one has to use Rust nightly with my choice of libraries one could also use
+diesel with syntex on the stable branch and substitute Maud with something like
+Horrorshow.</p></div></main><footer><p class="copyright text-muted">© All rights reserved. Powered by <a href=https://gohugo.io>Hugo</a> and <a href=https://github.com/calintat/minimal>Minimal</a></p></footer></body></html>

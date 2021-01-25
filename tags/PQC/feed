@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PQC on Neikos &amp; Programming</title>
+    <link>http://neikos.me/tags/PQC/</link>
+    <description>Recent content in PQC on Neikos &amp; Programming</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 27 Jan 2020 09:04:21 +0000</lastBuildDate><atom:link href="http://neikos.me/tags/PQC/feed" rel="self" type="application/rss" />
+    <item>
+      <title>How I do field research for Quantum Resistant Cryptography</title>
+      <link>http://neikos.me/post/2020-01-27-Doing_research/</link>
+      <pubDate>Mon, 27 Jan 2020 09:04:21 +0000</pubDate>
+      
+      <guid>http://neikos.me/post/2020-01-27-Doing_research/</guid>
+      <description>After starting my PHd I&amp;rsquo;ve had to develop a way to find relevant papers. In this blog post I&amp;rsquo;ll share this information so that it can be quickly referenced by me, and all those that might need to do similar research. Some of it could probably be used by others as well.
+The easiest first When diving into a new topic the first place I usually go looking is Google Scholar due to the breadth of publications it searches.</description>
+    </item>
+    
+  </channel>
+</rss>

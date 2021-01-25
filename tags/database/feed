@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>database on Neikos &amp; Programming</title>
+    <link>http://neikos.me/tags/database/</link>
+    <description>Recent content in database on Neikos &amp; Programming</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="http://neikos.me/tags/database/feed" rel="self" type="application/rss" />
+    <item>
+      <title>Rustbreak</title>
+      <link>http://neikos.me/project/rustbreak/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://neikos.me/project/rustbreak/</guid>
+      <description>Repository &amp;mdash; Documentation Summary Rustbreak is a very simple to use database. It is meant to be used as a quick drop in database for all sorts of tools, where setting up an SQL infrastructure would be too much.
+When to use Use Rustbreak only if you understand these caveats:
+ Single file (depending on filesystem this might cause problems later on) Meant to be human readable and editable Does not scale to multiple concurrent processes (it is thread safe though)  If you need, or forseeable need better than those points, then do not use Rustbreak!</description>
+    </item>
+    
+  </channel>
+</rss>

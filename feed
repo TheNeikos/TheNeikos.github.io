@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Neikos &amp; Programming</title>
+    <link>http://neikos.me/</link>
+    <description>Recent content on Neikos &amp; Programming</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Jan 2021 23:34:20 +0000</lastBuildDate><atom:link href="http://neikos.me/feed" rel="self" type="application/rss" />
+    <item>
+      <title>Rustbreak</title>
+      <link>http://neikos.me/project/rustbreak/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://neikos.me/project/rustbreak/</guid>
+      <description>Repository &amp;mdash; Documentation Summary Rustbreak is a very simple to use database. It is meant to be used as a quick drop in database for all sorts of tools, where setting up an SQL infrastructure would be too much.
+When to use Use Rustbreak only if you understand these caveats:
+ Single file (depending on filesystem this might cause problems later on) Meant to be human readable and editable Does not scale to multiple concurrent processes (it is thread safe though)  If you need, or forseeable need better than those points, then do not use Rustbreak!</description>
+    </item>
+    
+    <item>
+      <title>How I program</title>
+      <link>http://neikos.me/post/2020-01-24-How_I_program/</link>
+      <pubDate>Sun, 24 Jan 2021 23:34:20 +0000</pubDate>
+      
+      <guid>http://neikos.me/post/2020-01-24-How_I_program/</guid>
+      <description>Getting better at Programming is, as any skill, a gradual process. You start as a beginner, and then grow from there. Sadly, I did not write down my thoughts or feelings during that time. Or, at least not in any succinct form. As of this year, I&amp;rsquo;ve now programmed for at least 10 years. I had started with C and frankly had no idea what I was doing (wanting to program &amp;lsquo;a game&amp;rsquo;, probably an MMO like all 16 year olds).</description>
+    </item>
+    
+    <item>
+      <title>How I do field research for Quantum Resistant Cryptography</title>
+      <link>http://neikos.me/post/2020-01-27-Doing_research/</link>
+      <pubDate>Mon, 27 Jan 2020 09:04:21 +0000</pubDate>
+      
+      <guid>http://neikos.me/post/2020-01-27-Doing_research/</guid>
+      <description>After starting my PHd I&amp;rsquo;ve had to develop a way to find relevant papers. In this blog post I&amp;rsquo;ll share this information so that it can be quickly referenced by me, and all those that might need to do similar research. Some of it could probably be used by others as well.
+The easiest first When diving into a new topic the first place I usually go looking is Google Scholar due to the breadth of publications it searches.</description>
+    </item>
+    
+    <item>
+      <title>Using Stainless with Rocket</title>
+      <link>http://neikos.me/Using_Stainless_with_Rocket.html</link>
+      <pubDate>Sun, 08 Jan 2017 18:06:03 +0000</pubDate>
+      
+      <guid>http://neikos.me/Using_Stainless_with_Rocket.html</guid>
+      <description>In this Blog post we will see how Rocket, Stainless and Serde work together to create easy and usable testing.
+ This blog posts assumes Rust nightly from at least version 1.15. Others haven&amp;rsquo;t been tested, so YMMV.
+Rocket is a new Rust web framework that has been released to the public late last year. It aims to provide a simple way to write and maintain fast and safe web applications.</description>
+    </item>
+    
+    <item>
+      <title>Using Rust for Webdev as a Hobby Programmer</title>
+      <link>http://neikos.me/Using_Rust_for_Webdev_as_a_Hobby_Programmer.html</link>
+      <pubDate>Sat, 08 Oct 2016 12:38:18 +0000</pubDate>
+      
+      <guid>http://neikos.me/Using_Rust_for_Webdev_as_a_Hobby_Programmer.html</guid>
+      <description>I&amp;rsquo;ve been a huge fan of Rust ever since I started using it (which was right before 1.0 as I didn&amp;rsquo;t like updating my code all the time to the latest syntax). At first I created a few silly applications, some games, tried my hand at libraries; but in the end I was still drawn back into Web Development. You have to know that I grew up with PHP and then Ruby for Web Development, so I went from CakePHP to Ruby on Rails, which was amazing!</description>
+    </item>
+    
+    <item>
+      <title>On our way to a Minecraft Clone</title>
+      <link>http://neikos.me/On_our_way_to_a_Minecraft_Clone.html</link>
+      <pubDate>Tue, 19 Apr 2016 09:37:03 +0000</pubDate>
+      
+      <guid>http://neikos.me/On_our_way_to_a_Minecraft_Clone.html</guid>
+      <description>It&amp;rsquo;s been somewhat of a goal of mine to create a semi-functional &amp;lsquo;Minecraft&amp;rsquo; clone. I usually get stuck somewhere, and today I want to document what I do and how far I get, simply for anteriority purposes. (Why Minecraft? It is one of the rare games that were actually fun to play, and still are today)
+Starting out This is not a tutorial, but mostly a journal of some sort. So there might be things that are not explained.</description>
+    </item>
+    
+    <item>
+      <title>Diaspora Pod</title>
+      <link>http://neikos.me/Diaspora_Pod.html</link>
+      <pubDate>Fri, 22 Jan 2016 19:54:54 +0000</pubDate>
+      
+      <guid>http://neikos.me/Diaspora_Pod.html</guid>
+      <description>I&amp;rsquo;ve setup a Diaspora Pod and I welcome anyone to signup! You can find it here: Neikos&#39; Pod
+The software itself is a Rails Application, which I find rather interesting as I am a huge fan of that framework.
+Either way, see ya online! Either on my pod, or perhaps your own :)</description>
+    </item>
+    
+    <item>
+      <title>Continuous Integration with Github and Drone for Rust Projects</title>
+      <link>http://neikos.me/Continuous_integration_with_Github_Drone_and_Rust.html</link>
+      <pubDate>Wed, 21 Oct 2015 11:25:33 +0000</pubDate>
+      
+      <guid>http://neikos.me/Continuous_integration_with_Github_Drone_and_Rust.html</guid>
+      <description>The combination of Github and Drone (or any other CI) is quite powerful when it comes to assuring that your pull requests are not breaking any existing tests.
+For those who have never heard of Drone: Drone is an open source CI Server that is easy to install and compatible with lots of different services. You can check out the repo, it&amp;rsquo;s on Github as well.
+In this Blog post I will show you how to get from 0 to a github repository with tests for a rust library.</description>
+    </item>
+    
+    <item>
+      <title>Zabbix - Monitoring</title>
+      <link>http://neikos.me/Zabbix_-_Monitoring.html</link>
+      <pubDate>Wed, 30 Sep 2015 17:14:43 +0000</pubDate>
+      
+      <guid>http://neikos.me/Zabbix_-_Monitoring.html</guid>
+      <description>Well, it&amp;rsquo;s been a long time, but here is another blog post from my side.
+Today I am going to talk about Zabbix, it&amp;rsquo;s a pretty great monitoring Application that is easy enough to install and get running. I am not sure regarding security when it is openly accessible, so if you need that do your research first!
+How it works The basic setup is simple, it&amp;rsquo;s a glorified key-value storage.</description>
+    </item>
+    
+    <item>
+      <title>For IDEs</title>
+      <link>http://neikos.me/for-ides.html</link>
+      <pubDate>Mon, 05 Jan 2015 18:30:00 +0000</pubDate>
+      
+      <guid>http://neikos.me/for-ides.html</guid>
+      <description>First of all, Happy New Year! We&amp;rsquo;ve begun our next voyage around the sun and with a new year comes a fresh plate to start working on new projects.
+So that is what I did. I tried myself at Android Development again, and I have to admit it is actually okay. It is not as smooth as I wish it to be, but Google certainly did an okay job with what I have been exposed to.</description>
+    </item>
+    
+    <item>
+      <title>Functional Programming</title>
+      <link>http://neikos.me/Functional_Programming.html</link>
+      <pubDate>Thu, 23 Oct 2014 12:26:58 +0000</pubDate>
+      
+      <guid>http://neikos.me/Functional_Programming.html</guid>
+      <description>Functional Programming. I have often heard about the difficulty in functional programming. Immutability, pure functions, Monads a few dozen more of things to know to get started.
+For my part, I didn&amp;rsquo;t find it too difficult in getting started in Racket. While Racket doesn&amp;rsquo;t seem to be as strict as say Haskell, it seems to be rather nice nonetheless and fast! I wrote two simple programs in it, both are simple games so not purely functional (as they have side effects, namely drawing on the screen).</description>
+    </item>
+    
+    <item>
+      <title>Going into Resources (Games #2)</title>
+      <link>http://neikos.me/Going_into_Resources_(Games_-2).html</link>
+      <pubDate>Thu, 16 Oct 2014 13:46:21 +0000</pubDate>
+      
+      <guid>http://neikos.me/Going_into_Resources_(Games_-2).html</guid>
+      <description>I have talked with a friend of mine (who is rather knowleadgable) about an implementation of a resource system in my game. He offered me interesting insight into two ways of calculating and keeping resources up to date.
+Absolute This was what I thought I would end up implementing. In pseudocode this could look like this:
+ for each building for each resource of the building add/remove resource of given type end end This means that for each update a transaction is created that calculates the current demand and output and works through it.</description>
+    </item>
+    
+    <item>
+      <title>The Duck which is actually a Mouse</title>
+      <link>http://neikos.me/The_Duck_which_is_actually_a_Mouse.html</link>
+      <pubDate>Thu, 16 Oct 2014 03:06:16 +0000</pubDate>
+      
+      <guid>http://neikos.me/The_Duck_which_is_actually_a_Mouse.html</guid>
+      <description>Today, during our project work, we had decided to finally get ourselves a plushie. However, we didn&amp;rsquo;t find any that seemed to suit our tastes. So we settled with this mouse. It&amp;rsquo;s fairly iconic in Germany for being an educational program. So we thought it fitting to use as our duck.
+Will post a picture once it&amp;rsquo;s here!</description>
+    </item>
+    
+    <item>
+      <title>Browser Games</title>
+      <link>http://neikos.me/2014/10/14/Browser_Games_1/</link>
+      <pubDate>Tue, 14 Oct 2014 17:27:27 +0000</pubDate>
+      
+      <guid>http://neikos.me/2014/10/14/Browser_Games_1/</guid>
+      <description>As announced in my [Hello World Post]({% post_url 2014-10-13-hello-world %}) here is my idea for a game that I plan to develop. I don&amp;rsquo;t mind giving it out into the world as it is quite complex and might not ever see the light of the day. I find it fun to think and plan complex projects, executing them is even better of course. But sadly I don&amp;rsquo;t have infinite time at my hands.</description>
+    </item>
+    
+    <item>
+      <title>The Need for Documentation</title>
+      <link>http://neikos.me/2014/10/13/The_need_for_documentation/</link>
+      <pubDate>Mon, 13 Oct 2014 23:56:37 +0000</pubDate>
+      
+      <guid>http://neikos.me/2014/10/13/The_need_for_documentation/</guid>
+      <description>I have started working on an open source project which is going to implement the wayland protocol. I find this awesome as I am doing this as part of my University project of the fourth semester. I am doing it merely a semester earlier (because I wanted to).
+Now, to the subject of the actual blog post: Documentation! To be honest, I always dismissed documentation as being second rank (and sometimes still do) despite learning everyday how annoying it is to dive into a library/software that is not properly documented.</description>
+    </item>
+    
+    <item>
+      <title>Getting Stuff Done</title>
+      <link>http://neikos.me/2014/10/13/getting-stuff-done/</link>
+      <pubDate>Mon, 13 Oct 2014 13:43:00 +0000</pubDate>
+      
+      <guid>http://neikos.me/2014/10/13/getting-stuff-done/</guid>
+      <description>This is really something that I am spending a lot of my waking moments with. &amp;ldquo;What could I do right now?&amp;rdquo; is a usual question I have. Recently I came to the conclusion that anything is better than nothing. This includes things like just cleaning up something or reading up on an article you saved.
+I will try to fill this time with blog posts now. I find that to be more constructive than playing games or idling.</description>
+    </item>
+    
+    <item>
+      <title>Hello World</title>
+      <link>http://neikos.me/2014/10/13/hello-world/</link>
+      <pubDate>Mon, 13 Oct 2014 00:30:00 +0000</pubDate>
+      
+      <guid>http://neikos.me/2014/10/13/hello-world/</guid>
+      <description>Well, I have recently thought, why not finally use this domain of mine to go and start writing. I am pretty sure it will help me get forward with my goals. Namely creating a game. I will post my updates here, after explaining what this game is going to be about.</description>
+    </item>
+    
+  </channel>
+</rss>

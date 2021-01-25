@@ -1,0 +1,69 @@
+==================================================================
+https://keybase.io/neikos
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://neikos.me
+  * I am neikos (https://keybase.io/neikos) on keybase.
+  * I have a public key with fingerprint A014 0B87 FA93 CEB9 1B04  20ED A279 29D2 E7F3 0E2C
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "a0140b87fa93ceb91b0420eda27929d2e7f30e2c",
+            "host": "keybase.io",
+            "key_id": "a27929d2e7f30e2c",
+            "uid": "b45557b60f94137a78451ce46682d000",
+            "username": "neikos"
+        },
+        "service": {
+            "hostname": "neikos.me",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1415041372,
+    "expire_in": 157680000,
+    "prev": "aa60fe400c09dcd5705165498e1db29d889dc74e94fd858814b39a50126506c9",
+    "seqno": 5,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v2
+
+owGbwMvMwMS4qFLz0vPPfDqMpw+8TWIICb+YWq2UlJ9SqWRVrZSdCqbSMvPSU4sK
+ijLzSpSslBINDE0MkizM0xItjZNTkywNkwxMjAxSUxKNzC2NLFOMUs3TjA1SjZKV
+dJQy8otBOoDGJCUWp+pl5gPFgJz4zBSQOZjqS8ESSSampqbmSWYGaZYmhsbmieYW
+JqaGyakmZmYWRikGBgYghcWpRXmJualA1Xmpmdn5xUq1OkpAsbLM5FSQi0EWo8jr
+Adk6SgVF+SX5yfk5QOGMkpICK5CuksoCkLLy1KR4qAHxSZl5KUAvAzWUpRYVZ+bn
+KVkZAlUml2SCTDQ0MTQ1ADnMSEcptaIgsyg1PhOkwtTczALoOgOQNallIA8mAr2Q
+amJgkGxgmZKcYmpuYGpoZmpiaZFqmJIE9LmFBVDY3CTV0iQtxcLUwsLQJMnYMtHU
+wNDIzNTALNlSCeSlwrx8JStToDMT04FGFmem5yWWlBalKtVydTLJsDAwMjGwsTKB
+Yo2Bi1MAFpe9bPz/XRS/a+X/lQ64Yvc8Vy1N+tL34k+lAaLODzg/H2z+39xuWsd2
+95j3wfhldTO+fRdqYMnZft9jYvHRQz3Fu4/JSxxe9U7ggvgTZq5HvG1MFsYbN2uf
+Zmh7pxP1lSuk6fAbX6ejBhqMLaui2TlTJD6xMG62v+XeXD2v2bGuMefws1MT7h07
+9Xb5+vOcMTzTnyYn+R9q6PWZ6fJXZN+cibvnrX7BlXhp+vSjc48+vVkgyH5H0Xmi
+2b318p3ZG7y1l1ld+P/kc+289A+xTEHvnym4xbas23p0Uc6i4yyPI7bn7JT/auD5
+8mCOxucbRW0mejf/L1qzQtYvXHKTzh/H/f2SW2Tcfq1/otfAw2TmwJP0/Kp03+rL
+GgtY1y3IOPJV32t9q3bXjoCseZWRxd33NN/8qj6dN9G148OyX4e/B11pr79RlzT/
+8rqnk1xPHp+zR7Cnd6I778NnZ+NUHy1i+vTb5NlxpgUeUbEv2rcYbHdYZpH0ddWn
+9qt364ymuZqXrPZpVw5Z5WCiszFo9zrRK1ZMs3geq69ekHWDkzeY5fb+rWka87bf
+zrzRHt4RcmRX6Ne5WVOWn+TfnuF1dkEXV8Va/4Dtqs8rJqip5i65mBYtlPD8u0bg
+v/Yfc1mSHaZ5H5y3/db3J8s0P/x/tkauc/6Lw2dqrS1v7Z5+XEHmcb3jvXWvGKx0
+gwRUwqxfRc5ZXDLrzRMz+x9HV/1qYU3VkywEAA==
+=Kuro
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/neikos
+
+==================================================================

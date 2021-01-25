@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Neikos &amp; Programming</title>
+    <link>http://neikos.me/tags/</link>
+    <description>Recent content in Tags on Neikos &amp; Programming</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Jan 2021 23:34:20 +0000</lastBuildDate><atom:link href="http://neikos.me/tags/feed" rel="self" type="application/rss" />
+    <item>
+      <title>Programming</title>
+      <link>http://neikos.me/tags/Programming/</link>
+      <pubDate>Sun, 24 Jan 2021 23:34:20 +0000</pubDate>
+      
+      <guid>http://neikos.me/tags/Programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rust</title>
+      <link>http://neikos.me/tags/Rust/</link>
+      <pubDate>Sun, 24 Jan 2021 23:34:20 +0000</pubDate>
+      
+      <guid>http://neikos.me/tags/Rust/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PHd</title>
+      <link>http://neikos.me/tags/PHd/</link>
+      <pubDate>Mon, 27 Jan 2020 09:04:21 +0000</pubDate>
+      
+      <guid>http://neikos.me/tags/PHd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PQC</title>
+      <link>http://neikos.me/tags/PQC/</link>
+      <pubDate>Mon, 27 Jan 2020 09:04:21 +0000</pubDate>
+      
+      <guid>http://neikos.me/tags/PQC/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>database</title>
+      <link>http://neikos.me/tags/database/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://neikos.me/tags/database/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

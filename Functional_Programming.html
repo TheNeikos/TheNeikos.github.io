@@ -1,0 +1,49 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Functional Programming</title><style>html body{font-family:raleway,sans-serif;background-color:#fff}:root{--accent: green;--border-width:  5px }</style><link rel=stylesheet href=/css/main.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Raleway"><link rel=stylesheet href=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/solarized-dark.min.css><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous><link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css integrity=sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN crossorigin=anonymous><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/haskell.min.js></script><script src=//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js></script><script>hljs.initHighlightingOnLoad();</script><script src=https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js></script><script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script><script>$(document).on('click',function(){$('.collapse').collapse('hide');})</script><script type=text/javascript>var _paq=_paq||[];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function(){_paq.push(['setTrackerUrl','https://api-1ae8886f4428fee007ebf3e570e5c1e3.hemera.sandcats.io']);_paq.push(['setSiteId',1]);_paq.push(['setApiToken','f33SDEYp33zx4vFBTZdm13NtTK9Ksd93EDx2kT1e982']);var d=document,g=d.createElement('script'),s=d.getElementsByTagName('script')[0];g.type='text/javascript';g.async=true;g.defer=true;g.src='https://md6h0twa65rihzm46p0e.hemera.sandcats.io/embed.js';s.parentNode.insertBefore(g,s);})();</script><meta name=generator content="Hugo 0.80.0"></head><body><nav class="navbar navbar-default navbar-fixed-top"><div class=container><div class=navbar-header><a class="navbar-brand visible-xs" href=#>Functional Programming</a>
+<button class=navbar-toggle data-target=.navbar-collapse data-toggle=collapse>
+<span class=icon-bar></span><span class=icon-bar></span><span class=icon-bar></span></button></div><div class="collapse navbar-collapse"><ul class="nav navbar-nav"><li><a href=/>Home</a></li><li><a href=/post/>Posts</a></li><li><a href=/project/>Projects</a></li></ul><ul class="nav navbar-nav navbar-right"><li class=navbar-icon><a href=mailto:neikos@neikos.email><i class="fa fa-envelope-o"></i></a></li><li class=navbar-icon><a href=https://github.com/TheNeikos/><i class="fa fa-github"></i></a></li><li class=navbar-icon><a href=https://stackoverflow.com/users/783825/neikos><i class="fa fa-stack-overflow"></i></a></li><li class=navbar-icon><a href=https://telegram.me/TheNeikos><i class="fa fa-telegram"></i></a></li></ul></div></div></nav><main><div class=item><h4><a href=/Functional_Programming.html>Functional Programming</a></h4><h5>October 23, 2014</h5></div><br><div class=text-justify><p>Functional Programming. I have often heard about the difficulty in functional
+programming. Immutability, pure functions, Monads a few dozen more of things to
+know to get started.</p><p>For my part, I didn&rsquo;t find it too difficult in getting started in Racket. While
+Racket doesn&rsquo;t seem to be as strict as say Haskell, it seems to be rather nice
+nonetheless and <em>fast</em>! I wrote two simple programs in it, both are simple games
+so not purely functional (as they have side effects, namely drawing on the
+screen).</p><p>The first one is a simple &ldquo;Guess the Number&rdquo; style game. A random value is
+generated and then the user has to guess it.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-racket data-lang=racket><span style=color:#f92672>#lang </span>racket
+
+
+(<span style=color:#66d9ef>define</span> number (random <span style=color:#ae81ff>100</span>))
+
+(<span style=color:#66d9ef>define</span> (win)
+  (display <span style=color:#e6db74>&#34;You won the game! In &#34;</span>)
+  (display tries)
+  (display <span style=color:#e6db74>&#34; tries!</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>)
+  (exit))
+
+(<span style=color:#66d9ef>define</span> (give-hint g)
+  (<span style=color:#66d9ef>if</span> (&gt; g number)
+    (display <span style=color:#e6db74>&#34;You have to go smaller</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>)
+    (display <span style=color:#e6db74>&#34;You have to go bigger</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>)))
+
+(<span style=color:#66d9ef>define</span> (try-again g)
+  (display <span style=color:#e6db74>&#34;Nope! &#34;</span>)
+  (give-hint g)
+  (<span style=color:#66d9ef>set!</span> tries (add1 tries)))
+
+
+(<span style=color:#66d9ef>define</span> (check-input g)
+    (<span style=color:#66d9ef>if</span> (= g number)
+      (win)
+      ((try-again g)
+       (guessing))))
+
+
+
+(<span style=color:#66d9ef>define</span> tries <span style=color:#ae81ff>1</span>)
+(<span style=color:#66d9ef>define</span> (guessing)
+  (<span style=color:#66d9ef>let</span> ([g (read)])
+    (check-input g)))
+
+(guessing)<span style=color:#960050;background-color:#1e0010>
+</span></code></pre></div><p>I refactored it a bit, although that was just to see if it looked better like
+that.</p><p>I am also in the process of writing a simple game where you have to dodge blocks
+falling down, losing if one hits you. It&rsquo;s a bit more complicated, but that was
+to be expected with graphical output.</p></div></main><footer><p class="copyright text-muted">© All rights reserved. Powered by <a href=https://gohugo.io>Hugo</a> and <a href=https://github.com/calintat/minimal>Minimal</a></p></footer></body></html>
