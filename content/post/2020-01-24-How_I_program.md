@@ -1,5 +1,5 @@
 ---
-date: 2020-01-24T23:34:20Z
+date: 2021-01-24T23:34:20Z
 title: How I program
 tags:
     - Rust
